@@ -1,5 +1,5 @@
 <?php
-namespace HinhAnh\Entity;
+namespace RaoVat\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Persisttence\ObjectManager;
 /**
