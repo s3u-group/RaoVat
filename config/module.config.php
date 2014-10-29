@@ -52,7 +52,6 @@ return array(
 
             'orm_default' => array(
                 'drivers' => array(
-
                     'RaoVat\Entity' => 'rao_vat_annotation_driver'//Edit
                 )
             )
