@@ -19,7 +19,7 @@ class HinhAnh
 	/**
 	* @ORM\Column(name="id_tin",type="interger",length=10)
 	*/
-	private $idTin;
+	private $idBangTin;
 
 
 	/**
@@ -38,14 +38,14 @@ class HinhAnh
 		return $this->idHinhAnh;
 	}	
 
-	public function setIdTin($idTin)
+	public function setIdBangTin($idBangTin)
 	{
-		$this->idTin=$idTin;
+		$this->idBangTin=$idBangTin;
 	}
 
-	public function getIdTin()
+	public function getIdBangTin()
 	{
-		return $this->idTin;
+		return $this->idBangTin;
 	}
 
 	public function setViTri($viTri)
