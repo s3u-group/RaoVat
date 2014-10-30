@@ -27,7 +27,7 @@ class HinhAnhFieldset extends Fieldset implements InputFilterProviderInterface
         
          $this->add(array(
              'name' => 'images',
-             'type' => 'Element\File',
+             'type' => 'File',
              'option'=>array(
                 'label'=>'Chọn Ảnh',
                 'multiple'=>true,

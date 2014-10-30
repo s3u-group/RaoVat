@@ -4,6 +4,9 @@
  use Zend\View\Model\ViewModel;
  use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
  use Zend\ServiceManager\ServiceManager;
+
+ use RaoVat\Entity\BangTin;
+ use RaoVat\Form\CreateBangTinForm;
  
  class IndexController extends AbstractActionController
  {
@@ -30,7 +33,7 @@
  	{
     $entityManager=$this->getEntityManager();
     $bangTin=new BangTin();
-    $form= new CreateBangTinForm($objectManager);
+    $form= new CreateBangTinForm($entityManager);
     $form->bind($bangTin);
     $request = $this->getRequest();
     if ($request->isPost())

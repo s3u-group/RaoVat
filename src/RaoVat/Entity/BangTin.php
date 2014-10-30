@@ -1,9 +1,10 @@
 <?php
  namespace RaoVat\Entity;
 
+ use Doctrine\Common\Collections\ArrayCollection;
+ use Doctrine\Common\Collections\Collection;
  use Doctrine\ORM\Mapping as ORM;
- use Doctrine\Common\Collection\ArrayCollection;
- use Doctrine\Common\Collection\Collection;
+ use RaoVat\Entity\HinhAnh;
 
  /**
  * @ORM\Entity

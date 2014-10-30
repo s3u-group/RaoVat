@@ -7,10 +7,15 @@ use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
 
+use Zend\Form\Element;
+use Zend\Form\Form;
+
 use RaoVat\Form\MucDoVipFieldset;
 use RaoVat\Form\LoaiTinFieldset;
 use RaoVat\Form\HinhAnhFieldset;
 use S3UTaxonomy\Form\TermTaxonomyFieldset;
+
+use RaoVat\Entity\BangTin;
 
 
 class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
@@ -40,7 +45,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
 
           $this->add(array(
              'name' => 'noiDung',
-             'type' => 'Element\Textarea',
+             'type' => 'Textarea',
              'options' => array(
                  'label' => 'Nội dung',
              ),
@@ -49,7 +54,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
 
           $this->add(array(
              'name' => 'ngayDang',
-             'type' 'Element\Date',
+             'type' =>'Date',
              'options' => array(
                  'label' => 'Ngày đăng',
              ),
@@ -58,7 +63,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
 
           $this->add(array(
              'name' => 'ngayKetThuc',
-             'type' 'Element\Date',
+             'type' =>'Date',
              'options' => array(
                  'label' => 'Ngày kết thúc',
              ),
@@ -91,7 +96,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
         $hinhAnh = new HinhAnhFieldset($objectManager);
         $this->add(array(
             'type'    => 'Zend\Form\Element\Collection',
-            'name'    => 'hinhAnhs',
+            'name'    => 'hinhAnh',
             'options' => array(
                 'count'           => 1,
                 'target_element' => $hinhAnh,
