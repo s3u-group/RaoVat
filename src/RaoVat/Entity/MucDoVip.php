@@ -31,13 +31,13 @@
 		return $this->idMucDoVip;
 	}
 
-	public function setTenMucDo($tenMucDoVip)
+	public function setTenMucDoVip($tenMucDoVip)
 	{
 		$this->tenMucDoVip=$tenMucDoVip;
 	}
 	public function getTenMucDoVip()
 	{
 		return $this->tenMucDoVip;
-	}	
+	}
  }
  ?>
