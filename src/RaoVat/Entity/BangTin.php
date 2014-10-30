@@ -73,7 +73,7 @@
 	*/
 	private $hinhAnhs;
 
-	public finction __construct()
+	public function __construct()
 	{
 		$this->hinhAnhs=new ArrayCollection();
 	}

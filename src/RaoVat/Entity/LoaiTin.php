@@ -42,4 +42,5 @@ class LoaiTin
 	{
 		return $this->tenLoaiTin;
 	}
+}
 	?>

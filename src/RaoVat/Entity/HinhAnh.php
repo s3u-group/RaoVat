@@ -57,5 +57,6 @@ class HinhAnh
 	{
 		return $this->viTri;
 	}
+}
 
 	?>
