@@ -15,7 +15,6 @@ class LoaiTin
 	*/
 	private $idLoaiTin;
 
-
 	/**
 	* @ORM\Column(name="ten_loai_tin")
 	*/
