@@ -9,8 +9,7 @@
  * @ORM\Entity
  * @ORM\Table(name="muc_do_vip")
  */
- class BangTin
- {
+ class MucDoVip{
  	/**
 	* @ORM\Column(name="id_muc_do_vip",type="integer")
 	* @ORM\Id
