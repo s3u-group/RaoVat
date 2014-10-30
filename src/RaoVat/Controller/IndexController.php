@@ -21,11 +21,7 @@
  	public function indexAction()
  	{
  	}
-
-  public function uploadFormAction()
-  {        
-  }
-
+   
  	public function addAction()
  	{
  	}
