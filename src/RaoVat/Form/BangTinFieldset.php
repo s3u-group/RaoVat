@@ -49,7 +49,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
 
           $this->add(array(
              'name' => 'ngayDang',
-             'type' 'Element\Date',
+             'type' 'Date',
              'options' => array(
                  'label' => 'Ngày đăng',
              ),
@@ -58,7 +58,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
 
           $this->add(array(
              'name' => 'ngayKetThuc',
-             'type' 'Element\Date',
+             'type' 'Date',
              'options' => array(
                  'label' => 'Ngày kết thúc',
              ),
