@@ -20,14 +20,27 @@
   
  	public function indexAction()
  	{
+
  	}
 
-  public function uploadFormAction()
-  {        
-  }
-
+  
  	public function addAction()
  	{
+    $entityManager=$this->getEntityManager();
+    $bangTin=new BangTin();
+    $form= new CreateBangTinForm($objectManager);
+    $form->bind($bangTin);
+    $request = $this->getRequest();
+    if ($request->isPost())
+    { 
+      $form->setData($request->getPost());
+      if ($form->isValid()) {
+      }
+    }
+
+    return array(
+      'form' => $form,   
+    );
  	}
 
  	public function editAction()
