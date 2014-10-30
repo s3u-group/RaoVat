@@ -21,9 +21,11 @@
  	public function indexAction()
  	{
 
+
  	}
 
   
+
  	public function addAction()
  	{
     $entityManager=$this->getEntityManager();
