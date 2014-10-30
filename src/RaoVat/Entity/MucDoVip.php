@@ -18,9 +18,9 @@
 	private $idMucDoVip;
 
 	/**
-	* @ORM\Column(name="ten_muc_do")
+	* @ORM\Column(name="ten_muc_do_vip")
 	*/
-	private $tenMucDo;
+	private $tenMucDoVip;
 
 	public function setIdMucDoVip($idMucDoVip)
 	{
@@ -30,6 +30,14 @@
 	{
 		return $this->idMucDoVip;
 	}
-	
+
+	public function setTenMucDoVip($tenMucDoVip)
+	{
+		$this->tenMucDoVip=$tenMucDoVip;
+	}
+	public function getTenMucDoVip()
+	{
+		return $this->tenMucDoVip;
+	}
  }
  ?>
