@@ -103,7 +103,7 @@
 	{
 		$this->idTin=$idTin;
 	}
-	public function get()
+	public function getIdTin()
 	{
 		return $this->idTin;
 	}
