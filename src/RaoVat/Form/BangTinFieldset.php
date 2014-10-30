@@ -108,9 +108,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
     public function getInputFilterSpecification()
     {
         return array(
-            'name' => array(
-                'required' => true
-            ),
+          
         );
     }
 }
