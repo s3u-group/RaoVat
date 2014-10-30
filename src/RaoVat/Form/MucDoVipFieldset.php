@@ -19,10 +19,11 @@ class MucDoVipFieldset extends Fieldset implements InputFilterProviderInterface
              'name' => 'idMucDoVip',
              'type' => 'Hidden',
          ));
-         /*$this->add(array(
+         $this->add(array(
              'name' => 'tenMucDoVip',
-             'type' => '',
-         )); */         
+             'type' => 'Text',
+             'attributes'=>array('required'=>'required'),
+         ));          
     }
 
     public function getInputFilterSpecification()

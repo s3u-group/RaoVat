@@ -24,15 +24,7 @@ class HinhAnhFieldset extends Fieldset implements InputFilterProviderInterface
              'name' => 'idBangTin',
              'type' => 'Hidden',
          )); 
-         /*$this->add(array(
-             'name' => 'viTri',
-             'type' => 'Hidden',
-         ));*/
-
-         /*$images = new Element\File('image-file');
-         $images->setLabel('Image Upload')
-             ->setAttribute('id', 'image-file')
-             ->setAttribute('multiple',true);*/
+        
          $this->add(array(
              'name' => 'images',
              'type' => 'Element\File',

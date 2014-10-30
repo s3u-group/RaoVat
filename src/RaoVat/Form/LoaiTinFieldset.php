@@ -19,10 +19,11 @@ class LoaiTinFieldset extends Fieldset implements InputFilterProviderInterface
              'name' => 'idLoaiTin',
              'type' => 'Hidden',
          ));
-         /*$this->add(array(
+         $this->add(array(
              'name' => 'tenLoaiTin',
-             'type' => '',
-         )); */         
+             'type' => 'Text',
+             'attributes'=>array('required'=>'required'),
+         ));          
     }
 
     public function getInputFilterSpecification()

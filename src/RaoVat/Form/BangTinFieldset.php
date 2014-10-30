@@ -60,11 +60,6 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
              'attributes'=>array('required'=>'required'),
          ));
 
-         $userFieldset = new UserFieldset($objectManager);
-         $userFieldset->setUseAsBaseFieldset(true);
-         $userFieldset->setName('idUser');
-         $this->add($userFieldset);
-
 
          $idDanhMuc = new TermTaxonomyFieldset($objectManager);
          $idDanhMuc->setUseAsBaseFieldset(true);
