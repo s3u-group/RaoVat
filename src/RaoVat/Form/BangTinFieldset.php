@@ -7,6 +7,11 @@ use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
 
+use RaoVat\Form\MucDoVipFieldset;
+use RaoVat\Form\LoaiTinFieldset;
+use RaoVat\Form\HinhAnhFieldset;
+use S3UTaxonomy\Form\TermTaxonomyFieldset;
+
 
 class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
 {
