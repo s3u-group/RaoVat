@@ -63,7 +63,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
 
           $this->add(array(
              'name' => 'ngayKetThuc',
-             'type' =>'Date',
+             'type'=>'Date',
              'options' => array(
                  'label' => 'Ngày kết thúc',
              ),

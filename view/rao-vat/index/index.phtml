@@ -1,7 +1,51 @@
+<SCRIPT LANGUAGE="JavaScript">
+    function confirmAction() {
+      var xacNhan=confirm("Bạn thật sự muốn xóa bảng tin này?");
+      if(xacNhan==true)
+      {
+        return true;
+      }
+      return false;
+    }
+</SCRIPT>
 <h1>TRANG RAO VẶT</h1>
-
 
 <p>
 	<a href="<?php echo $this->url('rao_vat/crud', array('action'=>'add'));?>">Thêm bảng tin</a>
 </p>
+<form method="post">
+ <table class="table">
+ <tr>
+     
+     <th>Tiêu đề</th>
+     <th>Nội dung</th>
+     <th>Ngày đăng</th>
+     <th>Ngày kết thúc</th>
+     <th>Dannh mục</th>
+     <th>Khu vực</th>
+     <th>Mức độ</th>
+     <th>Loại</th>
+     <th>&nbsp;</th>
+ </tr> 
+
+ <?php /*die(var_dump($bangTins));*/ foreach ($bangTins as $bangTin):?>
+ <tr>     
+     <td><?php echo $this->escapeHtml($bangTin->getTieuDe());?></td>
+     <td><?php echo $this->escapeHtml($bangTin->getNoiDung());?></td>
+     <td><?php echo $this->escapeHtml(date_format($bangTin->getNgayDang(),'d/m/Y'));?></td>
+     <td><?php echo $this->escapeHtml(date_format($bangTin->getNgayKetThuc(),'d/m/Y'));?></td>
+     <td><?php echo $this->escapeHtml($bangTin->getIdDanhMuc());?></td>
+     <td><?php echo $this->escapeHtml($bangTin->getIdKhuVuc());?></td>
+     <td><?php echo $this->escapeHtml($bangTin->getIdMucDoVip());?></td>
+	 <td><?php echo $this->escapeHtml($bangTin->getIdLoaiTin());?></td>     
+     <td>
+         <a href="<?php echo $this->url('rao_vat/crud',
+             array('action'=>'edit', 'id' => $bangTin->getIdTin()));?>">Sửa</a>         
+         <a href="<?php echo $this->url('rao_vat/crud',
+             array('action'=>'delete','id'=>$bangTin->getIdTin()));?>" onclick="return confirmAction()">Xóa</a>
+     </td>     
+ </tr>
+ <?php endforeach; ?>
+ </table>
+</form>
 
