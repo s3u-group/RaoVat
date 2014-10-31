@@ -63,9 +63,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
 
           $this->add(array(
              'name' => 'ngayKetThuc',
-
              'type'=>'Date',
-
              'options' => array(
                  'label' => 'Ngày kết thúc',
              ),
@@ -100,7 +98,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
             'type'    => 'Zend\Form\Element\Collection',
             'name'    => 'hinhAnh',
             'options' => array(
-                'count'           => 1,
+                'count'          => 1,
                 'target_element' => $hinhAnh,
             )
         ));
