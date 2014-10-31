@@ -88,7 +88,7 @@
 </div>
 
 <div class="form-group"> 	
- 		<?php $hinhAnh=$bangTin->get('hinhAnhs');?>
+ 		<?php $hinhAnh=$bangTin->get('hinhAnhs')->get('hinhAnhs');?>
  		<?php $hinhAnh->setAttribute('class','form-control');?> 		
  		<?php echo $this->formElement($hinhAnh);?> 
 </div>
@@ -98,5 +98,4 @@
 	echo $this->formSubmit($submit);
 	echo $this->form()->closeTag();
 
-	//die(var_dump($this->makeArrayOptionMucDoVip($mucDoVips)));
 ?>

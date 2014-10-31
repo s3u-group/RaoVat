@@ -132,7 +132,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
 
         
 
-        $hinhAnhs = new HinhAnhFieldset($objectManager);
+        /*$hinhAnhs = new HinhAnhFieldset($objectManager);
         $this->add(array(
             'type'    => 'Zend\Form\Element\Collection',
             'name'    => 'hinhAnhs',
@@ -140,7 +140,12 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
                 'count'           => 1,
                 'target_element' => $hinhAnhs,
             )
-        ));
+        ));*/
+
+         $hinhAnhFieldset = new HinhAnhFieldset($objectManager);
+         $hinhAnhFieldset->setUseAsBaseFieldset(true);
+         $hinhAnhFieldset->setName('hinhAnhs');
+         $this->add($hinhAnhFieldset);
 
     }
 

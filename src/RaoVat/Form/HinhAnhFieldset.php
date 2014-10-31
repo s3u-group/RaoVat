@@ -21,7 +21,7 @@ class HinhAnhFieldset extends Fieldset implements InputFilterProviderInterface
              'type' => 'Hidden',
          ));
          $this->add(array(
-             'name' => 'idBangTin',
+             'name' => 'idTin',
              'type' => 'Hidden',
          )); 
        
