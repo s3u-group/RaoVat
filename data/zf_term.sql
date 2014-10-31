@@ -59,8 +59,8 @@ INSERT INTO `zf_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `desc
 (30, 169, 'khu-vuc', 'Huyá»‡n Cáº§u KÃ¨, LÃ  má»™t Huyá»‡n thuá»™c Tá»‰nh TrÃ  Vinh', 27, NULL),
 (31, 170, 'khu-vuc', 'Huyá»‡n TrÃ  CÃº, LÃ  má»™t Huyá»‡n thuá»™c Tá»‰nh TrÃ  Vinh', 27, NULL);
 
-ALTER TABLE `zf_term_taxonomy`
-  ADD CONSTRAINT `zf_term_taxonomy_ibfk_1` FOREIGN KEY (`term_id`) REFERENCES `zf_term` (`term_id`),
-  ADD CONSTRAINT `zf_term_taxonomy_ibfk_2` FOREIGN KEY (`parent`) REFERENCES `zf_term_taxonomy` (`term_taxonomy_id`);
+--ALTER TABLE `zf_term_taxonomy`
+  --ADD CONSTRAINT `zf_term_taxonomy_ibfk_1` FOREIGN KEY (`term_id`) REFERENCES `zf_term` (`term_id`),
+  --ADD CONSTRAINT `zf_term_taxonomy_ibfk_2` FOREIGN KEY (`parent`) REFERENCES `zf_term_taxonomy` (`term_taxonomy_id`);
 
 

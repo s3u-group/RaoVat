@@ -119,11 +119,11 @@
          return $this->redirect()->toRoute('rao_vat', array(
              'action' => 'add'
          ));
-     }
+     }     
      $form= new UpdateBangTinForm($entityManager);         
      $bangTin = $entityManager->getRepository('RaoVat\Entity\BangTin')->find($id);
      $form->bind($bangTin);
-     //die(var_dump($form));
+     die(var_dump($form));
      //$request = $this->getRequest();
      if ($this->request->isPost())
      {
