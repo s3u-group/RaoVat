@@ -36,6 +36,3 @@ CREATE TABLE IF NOT EXISTS `hinh_anh` (
   KEY `fk_hinh_anh_bang_tin` (`id_tin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-ALTER TABLE `hinh_anh`
-  ADD CONSTRAINT `fk_hinh_anh_bang_tin` FOREIGN KEY (`id_tin`) REFERENCES `tin` (`id_tin`);
-

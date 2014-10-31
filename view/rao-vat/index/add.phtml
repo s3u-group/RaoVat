@@ -1,4 +1,6 @@
 <?php
+ use Zend\Form\Element;
+
  $title = 'THÊM BẢNG TIN';
  $this->headTitle($title);
  ?>
@@ -16,11 +18,6 @@
 
  <?php
  $bangTin=$form->get('bang-tin');
- $danhMuc=$bangTin->get('idDanhMuc');
- $khuVuc=$bangTin->get('idKhuVuc');
- $mucDoVip=$bangTin->get('idMucDoVip');
- $loaiTin=$bangTin->get('idLoaiTin');
- $hinhAnh=$bangTin->get('hinhAnh');
  echo $this->formHidden($bangTin->get('idTin'));
 ?>
 
@@ -49,18 +46,15 @@
  		<label><?php echo $ngayKetThuc->getLabel(); ?></label>
  		<?php echo $this->formElement($ngayKetThuc);?> 
 </div>
-<div class="form-group"> 	
- 		<?php $hinhAnh=$bangTin->get('hinhAnh');?>
- 		<?php $hinhAnh->setAttribute('class','form-control');?> 		
- 		<?php echo $this->formElement($hinhAnh);?> 
-</div>
 
-<div class="form-group"> 	
+<?php
+	
+?>
+<div class="form-group"> 
  		<?php $danhMuc=$bangTin->get('idDanhMuc');?>
- 		<?php $danhMuc->setLabel('Thuộc danh mục'); ?>
  		<?php $danhMuc->setAttribute('class','form-control');?>
  		<label><?php echo $danhMuc->getLabel(); ?></label>
- 		<?php //$danhMuc->setValueOptions($this->makeArrayCollection(NULL));?> 	 	
+ 		<?php $danhMuc->setValueOptions($this->MakeArrayOptionTaxonomy($danhMucs));?> 	 	
  		<?php echo $this->formElement($danhMuc);?> 
 </div>
 
@@ -70,7 +64,7 @@
  		<?php $khuVuc->setLabel('Khu vực'); ?>
  		<?php $khuVuc->setAttribute('class','form-control');?>
  		<label><?php echo $khuVuc->getLabel(); ?></label>
- 		<?php //$khuVuc->setValueOptions($this->makeArrayCollection(NULL));?> 	 	
+ 		<?php $khuVuc->setValueOptions($this->MakeArrayOptionTaxonomy($khuVucs));?> 	 	
  		<?php echo $this->formElement($khuVuc);?> 
 </div>
 
@@ -80,7 +74,7 @@
  		<?php $mucDoVip->setLabel('Mức độ vip'); ?>
  		<?php $mucDoVip->setAttribute('class','form-control');?>
  		<label><?php echo $mucDoVip->getLabel(); ?></label>
- 		<?php //$mucDoVip->setValueOptions($this->makeArrayCollection(NULL));?> 	 	
+ 		<?php $mucDoVip->setValueOptions($this->makeArrayOptionMucDoVip($mucDoVips));?> 	 	
  		<?php echo $this->formElement($mucDoVip);?> 
 </div>
 
@@ -89,13 +83,20 @@
  		<?php $loaiTin->setLabel('Loại tin'); ?>
  		<?php $loaiTin->setAttribute('class','form-control');?>
  		<label><?php echo $loaiTin->getLabel(); ?></label>
- 		<?php //$loaiTin->setValueOptions($this->makeArrayCollection(NULL));?> 	 	
+ 		<?php $loaiTin->setValueOptions($this->makeArrayOptionLoaiTin($loaiTins));?> 	 	
  		<?php echo $this->formElement($loaiTin);?> 
 </div>
 
+<div class="form-group"> 	
+ 		<?php $hinhAnh=$bangTin->get('hinhAnhs');?>
+ 		<?php $hinhAnh->setAttribute('class','form-control');?> 		
+ 		<?php echo $this->formElement($hinhAnh);?> 
+</div>
 <?php 
 	$submit=$form->get('submit'); 
 	$submit->setValue('Thêm Bảng Tin');
 	echo $this->formSubmit($submit);
 	echo $this->form()->closeTag();
+
+	//die(var_dump($this->makeArrayOptionMucDoVip($mucDoVips)));
 ?>

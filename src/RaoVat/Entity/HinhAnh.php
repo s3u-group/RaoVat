@@ -9,7 +9,7 @@ use Doctrine\Common\Persisttence\ObjectManager;
 class HinhAnh
 {
 	/**
-	* @ORM\Column(name="id_hinh_anh",type="integer")
+	* @ORM\Column(name="id_hinh_anh",type="integer", length=11)
 	* @ORM\Id
 	* @ORM\GeneratedValue
 	*/
@@ -17,9 +17,10 @@ class HinhAnh
 
 
 	/**
-	* @ORM\Column(name="id_tin",type="interger",length=10)
+	* @ORM\ManyToOne(targetEntity="RaoVat\Entity\BangTin", inversedBy="hinhAnhs")
+	* @ORM\JoinColumn(name="id_tin")
 	*/
-	private $idBangTin;
+	private $idTin;
 
 
 	/**
@@ -38,14 +39,14 @@ class HinhAnh
 		return $this->idHinhAnh;
 	}	
 
-	public function setIdBangTin($idBangTin)
+	public function setIdTin($idTin)
 	{
-		$this->idBangTin=$idBangTin;
+		$this->idTin=$idTin;
 	}
 
-	public function getIdBangTin()
+	public function getIdTin()
 	{
-		return $this->idBangTin;
+		return $this->idTin;
 	}
 
 	public function setViTri($viTri)

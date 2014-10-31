@@ -11,7 +11,7 @@
  */
  class MucDoVip{
  	/**
-	* @ORM\Column(name="id_muc_do_vip",type="integer")
+	* @ORM\Column(name="id_muc_do_vip",type="integer",length=11)
 	* @ORM\Id
 	* @ORM\GeneratedValue
 	*/

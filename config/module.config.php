@@ -57,4 +57,13 @@ return array(
             )
         )
     ),
+
+    'view_helpers'=>array(
+        'invokables'=>array(
+            'make_array_option_taxonomy'=>'RaoVat\View\Helper\MakeArrayOptionTaxonomy',  
+            'make_array_option_muc_do_vip'=>'RaoVat\View\Helper\MakeArrayOptionMucDoVip',  
+            'make_array_option_loai_tin'=>'RaoVat\View\Helper\MakeArrayOptionLoaiTin',  
+
+        ),
+    ),
 );

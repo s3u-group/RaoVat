@@ -13,7 +13,7 @@
  class BangTin
  {
  	/**
-	* @ORM\Column(name="tin_id",type="integer")
+	* @ORM\Column(name="tin_id",type="integer", length=11)
 	* @ORM\Id
 	* @ORM\GeneratedValue
 	*/
@@ -40,37 +40,37 @@
 	private $ngayKetThuc;
 
 	/**
-	* @ORM\Column(name="id_user", type="integer", length=10)
-	* @ORM\ManyToOne(targetEntity="DanhMuc\Entity\SystemUser")
+	* @ORM\Column(name="id_user")
+	* @ORM\ManyToOne(targetEntity="DanhMuc\Entity\SystemUser",cascade={"persist"})
 	*/
-	private $idUser;
+	private $idUser=1; //mai mot sua
 
 	/**
-	* @ORM\Column(name="id_danh_muc", type="bigint", length=20)
-	* @ORM\ManyToOne(targetEntity="S3UTaxonomy\Entity\ZfTermTaxonomy")
+	* @ORM\Column(name="id_danh_muc")
+	* @ORM\ManyToOne(targetEntity="S3UTaxonomy\Entity\ZfTermTaxonomy",cascade={"persist"})
 	*/
 	private $idDanhMuc;
 
 	/**
-	* @ORM\Column(name="id_khu_vuc", type="bigint", length=20)
-	* @ORM\ManyToOne(targetEntity="S3UTaxonomy\Entity\ZfTermTaxonomy")
+	* @ORM\Column(name="id_khu_vuc")
+	* @ORM\ManyToOne(targetEntity="S3UTaxonomy\Entity\ZfTermTaxonomy",cascade={"persist"})
 	*/
 	private $idKhuVuc;
 
 	/**
-	* @ORM\Column(name="id_muc_do_vip", type="int")
-	* @ORM\ManyToOne(targetEntity="RaoVat\Entity\MucDoVip")
+	* @ORM\Column(name="id_muc_do_vip")
+	* @ORM\ManyToOne(targetEntity="RaoVat\Entity\MucDoVip",cascade={"persist"})
 	*/
 	private $idMucDoVip;
 
 	/**
-	* @ORM\Column(name="id_loai_tin", type="int")
-	* @ORM\ManyToOne(targetEntity="RaoVat\Entity\LoaiTin")
+	* @ORM\Column(name="id_loai_tin")
+	* @ORM\ManyToOne(targetEntity="RaoVat\Entity\LoaiTin",cascade={"persist"})
 	*/
 	private $idLoaiTin;
 
 	/**	
-	* @ORM\OneToMany(targetEntity="RaoVat\Entity\HinhAnh", mappedBy="BangTin")
+	* @ORM\OneToMany(targetEntity="RaoVat\Entity\HinhAnh", mappedBy="idTin",cascade={"persist"})
 	*/
 	private $hinhAnhs;
 
@@ -82,7 +82,6 @@
 	public function addHinhAnhs(Collection $hinhAnhs)
 	{
 		foreach ($hinhAnhs as $hinhAnh) {
-			$hinhAnh->setIdBangTin($this);
 			$this->hinhAnhs->add($hinhAnh);
 		}
 	}
@@ -90,12 +89,11 @@
 	public function removeHinhAnhs(Collection $hinhAnhs)
 	{
 		foreach ($hinhAnhs as $hinhAnh) {
-			$hinhAnh->setIdBangTin(null);
 			$this->hinhAnhs->removeElement($hinhAnh);
 		}
 	}
 
-	public function getHinhAnh()
+	public function getHinhAnhs()
 	{
 		return $this->hinhAnhs;
 	}

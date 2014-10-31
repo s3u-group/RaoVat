@@ -33,6 +33,7 @@ class CreateBangTinForm extends Form
          ));    
 
         // Optionally set your validation group here
+        
     }
 }
 ?>
