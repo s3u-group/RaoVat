@@ -72,7 +72,7 @@
 	private $idLoaiTin;
 
 	/**	
-	* @ORM\OneToMany(targetEntity="RaoVat\Entity\HinhAnh", mappedBy="idTin",cascade={"persist"})
+	* @ORM\OneToMany(targetEntity="RaoVat\Entity\HinhAnh", mappedBy="idTin")
 	*/
 	private $hinhAnhs;
 

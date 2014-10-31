@@ -128,7 +128,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
                  'empty_option'=>'----------Chọn Loại tin----------',
                  'disable_inarray_validator' => true,
              ),
-         ));
+         ));                
     }
 
     public function getInputFilterSpecification()
