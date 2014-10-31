@@ -63,30 +63,15 @@
        $bangTin= $entityManager->getRepository('RaoVat\Entity\BangTin')->find($id);
        $form=new CreateBangTinForm($entityManager);
 
-       /*if(!$bangTin)
+       if(!$bangTin)
        {
           return $this->redirect()->toRoute('rao_vat');
        }
-       
-       $request = $this->getRequest();
-       if ($request->isPost()) {
-           $del = $request->getPost('del', 'No');
+              
+       $entityManager->remove($bangTin);
+       $entityManager->flush();       
 
-           if ($del == 'Yes') {
-               $id = (int) $request->getPost('id');
-
-               $entityManager->remove($bangTin);
-               $entityManager->flush();
-           }
-
-           // Redirect to list of albums
-           return $this->redirect()->toRoute('rao_vat');
-       }*/
-
-       return array(
-           'id'    => $id,
-           'bangTin' => $bangTin,
-       );
+       return $this->redirect()->toRoute('rao_vat');
    }
  }
 ?>

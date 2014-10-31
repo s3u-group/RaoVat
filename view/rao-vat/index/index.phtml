@@ -1,3 +1,13 @@
+<SCRIPT LANGUAGE="JavaScript">
+    function confirmAction() {
+      var xacNhan=confirm("Bạn thật sự muốn xóa bảng tin này?");
+      if(xacNhan==true)
+      {
+        return true;
+      }
+      return false;
+    }
+</SCRIPT>
 <h1>TRANG RAO VẶT</h1>
 
 <p>
@@ -30,9 +40,9 @@
 	 <td><?php echo $this->escapeHtml($bangTin->getIdLoaiTin());?></td>     
      <td>
          <a href="<?php echo $this->url('rao_vat/crud',
-             array('action'=>'edit', 'id' => $bangTin->getIdTin()));?>">Sửa</a>
+             array('action'=>'edit', 'id' => $bangTin->getIdTin()));?>">Sửa</a>         
          <a href="<?php echo $this->url('rao_vat/crud',
-             array('action'=>'delete', 'id' => $bangTin->getIdTin()));?>">Xóa</a>
+             array('action'=>'delete','id'=>$bangTin->getIdTin()));?>" onclick="return confirmAction()">Xóa</a>
      </td>     
  </tr>
  <?php endforeach; ?>
