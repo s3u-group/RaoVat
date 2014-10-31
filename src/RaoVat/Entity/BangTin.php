@@ -14,7 +14,7 @@
  class BangTin
  {
  	/**
-	* @ORM\Column(name="tin_id",type="integer", length=11)
+	* @ORM\Column(name="id_tin",type="integer", length=11)
 	* @ORM\Id
 	* @ORM\GeneratedValue
 	*/
