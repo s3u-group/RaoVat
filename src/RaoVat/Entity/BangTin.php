@@ -3,6 +3,7 @@
 
  use Doctrine\Common\Collections\ArrayCollection;
  use Doctrine\Common\Collections\Collection;
+ 
  use Doctrine\ORM\Mapping as ORM;
 
  use RaoVat\Entity\HinhAnh;
@@ -14,7 +15,7 @@
  class BangTin
  {
  	/**
-	* @ORM\Column(name="tin_id",type="integer", length=11)
+	* @ORM\Column(name="id_tin",type="integer", length=11)
 	* @ORM\Id
 	* @ORM\GeneratedValue
 	*/
