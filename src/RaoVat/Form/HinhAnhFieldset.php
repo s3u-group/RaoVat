@@ -28,7 +28,7 @@ class HinhAnhFieldset extends Fieldset implements InputFilterProviderInterface
          // File Input
         $image = new Element\File('hinhAnhs');
         $image->setAttribute('id', 'hinhAnhs');
-             //->setAttribute('multiple', true);   // That's it
+              ->setAttribute('multiple', true);   // That's it
         $this->add($image);       
     }
 
