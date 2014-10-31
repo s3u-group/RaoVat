@@ -13,6 +13,7 @@
 
 
  use RaoVat\Form\UpdateBangTinForm;
+ use S3UTaxonomy\Form\CreateTermTaxonomyForm;
  
  class IndexController extends AbstractActionController
  {
@@ -121,14 +122,19 @@
      $form= new UpdateBangTinForm($entityManager);         
      $bangTin = $entityManager->getRepository('RaoVat\Entity\BangTin')->find($id);
      $form->bind($bangTin);
-     die(var_dump($form));
-     //$request = $this->getRequest();
+
+     $idDanhMuc=(int)$bangTin->getIdDanhMuc();
+     var_dump($idDanhMuc);
+          
+     $danhMuc1=$entityManager->getRepository('S3UTaxonomy\Entity\ZfTermTaxonomy')->find($idDanhMuc);    
+     
+     $danhMuc=$entityManager->getRepository('S3UTaxonomy\Entity\ZfTerm')->find($danhMuc1->getTermId()->getTermId());
+     //var_dump($formDanhMuc);
+     die(var_dump($danhMuc));
      if ($this->request->isPost())
-     {
-      //var_dump($request->isPost());     
+     {      
        $form->setData($this->request->getPost());
        if ($form->isValid()) {
-        //die(var_dump($form));
        }
      }
 

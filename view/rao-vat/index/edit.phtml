@@ -17,7 +17,7 @@
  $form->prepare();
  //die(var_dump($form));
  $formBangTin=$form->get('bang-tin');
- die(var_dump($formBangTin));
+ //die(var_dump($formBangTin));
  echo $this->form()->openTag($form);
  echo $this->formHidden($formBangTin->get('idTin'));
  echo $this->formLabel($formBangTin->get('tieuDe')).": ";
@@ -34,7 +34,7 @@
  echo $this->formLabel($formBangTin->get('ngayKetThuc')).": ";
  echo $this->formElement($formBangTin->get('ngayKetThuc'));
  
- echo $this->formElement($formBangTin->get('idDanhMuc'))."&nbsp;&nbsp;&nbsp;&nbsp;"; 
+ //echo $this->formElement($formBangTin->get('idDanhMuc'))."&nbsp;&nbsp;&nbsp;&nbsp;"; 
  echo "</br></br>";
  echo $this->formRow($form->get('submit'));
  echo $this->form()->closeTag();

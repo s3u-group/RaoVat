@@ -92,7 +92,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
          $idKhuVuc->setUseAsBaseFieldset(true);
          $idKhuVuc->setName('idKhuVuc');
          $this->add($idKhuVuc);*/
-          $this->add(array(
+         $this->add(array(
              'name' => 'idKhuVuc',
              'type' => 'Select',
              'options' => array(
@@ -129,19 +129,6 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
                  'disable_inarray_validator' => true,
              ),
          ));
-
-        
-
-        $hinhAnhs = new HinhAnhFieldset($objectManager);
-        $this->add(array(
-            'type'    => 'Zend\Form\Element\Collection',
-            'name'    => 'hinhAnhs',
-            'options' => array(
-                'count'           => 1,
-                'target_element' => $hinhAnhs,
-            )
-        ));
-
     }
 
     public function getInputFilterSpecification()
