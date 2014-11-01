@@ -47,9 +47,6 @@
  		<?php echo $this->formElement($ngayKetThuc);?> 
 </div>
 
-<?php
-	
-?>
 <div class="form-group"> 
  		<?php $danhMuc=$bangTin->get('idDanhMuc');?>
  		<?php $danhMuc->setAttribute('class','form-control');?>
@@ -97,5 +94,4 @@
 	$submit->setValue('Thêm Bảng Tin');
 	echo $this->formSubmit($submit);
 	echo $this->form()->closeTag();
-
 ?>

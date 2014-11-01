@@ -49,15 +49,9 @@
     $taxonomyKhuVuc=$this->TaxonomyFunction();
     $khuVucs=$taxonomyKhuVuc->getListChildTaxonomy('khu-vuc');// đưa vào taxonomy dạng slug
 
-    $repository = $entityManager->getRepository('RaoVat\Entity\MucDoVip');
-    $queryBuilder = $repository->createQueryBuilder('mdv');
-    $query = $queryBuilder->getQuery();
-    $mucDoVips = $query->execute();
-
-    $repository = $entityManager->getRepository('RaoVat\Entity\LoaiTin');
-    $queryBuilder = $repository->createQueryBuilder('lt');
-    $query = $queryBuilder->getQuery();
-    $loaiTins = $query->execute();
+    $mucDoVips = $entityManager->getRepository('RaoVat\Entity\MucDoVip')->findAll();
+     
+    $loaiTins = $entityManager->getRepository('RaoVat\Entity\LoaiTin')->findAll();
 
     
     $request = $this->getRequest();
@@ -123,20 +117,37 @@
      $form= new UpdateBangTinForm($entityManager);         
      $bangTin = $entityManager->getRepository('RaoVat\Entity\BangTin')->find($id);
      $form->bind($bangTin);
-     die(var_dump($form));
-     //$request = $this->getRequest();
-     if ($this->request->isPost())
-     {
-      //var_dump($request->isPost());     
-       $form->setData($this->request->getPost());
-       if ($form->isValid()) {
-        //die(var_dump($form));
-       }
-     }
+    
+     $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
+     $queryBuilder = $repository->createQueryBuilder('hA');
+     $queryBuilder->add('where','hA.idTin='.$bangTin->getIdTin());
+     $query = $queryBuilder->getQuery();
+     $hinhAnhs = $query->execute();
 
+     $taxonomyDanhMuc=$this->TaxonomyFunction();
+     $danhMucs=$taxonomyDanhMuc->getListChildTaxonomy('danh-muc');// đưa vào taxonomy dạng slug
+    
+     $taxonomyKhuVuc=$this->TaxonomyFunction();
+     $khuVucs=$taxonomyKhuVuc->getListChildTaxonomy('khu-vuc');// đưa vào taxonomy dạng slug
+
+     $mucDoVips = $entityManager->getRepository('RaoVat\Entity\MucDoVip')->findAll();
+     
+
+     $loaiTins = $entityManager->getRepository('RaoVat\Entity\LoaiTin')->findAll();
+     
+     if ($this->request->isPost()) {
+         $form->setData($this->request->getPost());
+         if ($form->isValid()) {
+         }
+      }
      return array(
         'form' => $form,
-        'id'=>$id,          
+        'id'=>$id, 
+        'danhMucs'=>$danhMucs,
+        'khuVucs'=>$khuVucs, 
+        'mucDoVips'=> $mucDoVips,
+        'loaiTins'=>$loaiTins,    
+        'hinhAnhs'=>$hinhAnhs,
      );
  	}
 

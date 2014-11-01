@@ -70,12 +70,6 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
              'attributes'=>array('required'=>'required'),
          ));
 
-          /*
-         $idDanhMuc = new TermTaxonomyFieldset($objectManager);
-         $idDanhMuc->setUseAsBaseFieldset(true);
-         $idDanhMuc->setName('idDanhMuc');
-         $this->add($idDanhMuc);
-            */
           $this->add(array(
              'name' => 'idDanhMuc',
              'type' => 'Select',
@@ -88,10 +82,6 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
 
 
 
-         /*$idKhuVuc = new TermTaxonomyFieldset($objectManager);
-         $idKhuVuc->setUseAsBaseFieldset(true);
-         $idKhuVuc->setName('idKhuVuc');
-         $this->add($idKhuVuc);*/
           $this->add(array(
              'name' => 'idKhuVuc',
              'type' => 'Select',
@@ -102,10 +92,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
              ),
          ));
 
-         /*$idMucDoVip = new MucDoVipFieldset($objectManager);
-         $idMucDoVip->setUseAsBaseFieldset(true);
-         $idMucDoVip->setName('idMucDoVip');
-         $this->add($idMucDoVip);*/
+       
          $this->add(array(
              'name' => 'idMucDoVip',
              'type' => 'Select',
@@ -116,10 +103,7 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
              ),
          ));
 
-         /*$idLoaiTin = new LoaiTinFieldset($objectManager);
-         $idLoaiTin->setUseAsBaseFieldset(true);
-         $idLoaiTin->setName('idLoaiTin');
-         $this->add($idLoaiTin);*/
+      
          $this->add(array(
              'name' => 'idLoaiTin',
              'type' => 'Select',
@@ -131,16 +115,6 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
          ));
 
         
-
-        /*$hinhAnhs = new HinhAnhFieldset($objectManager);
-        $this->add(array(
-            'type'    => 'Zend\Form\Element\Collection',
-            'name'    => 'hinhAnhs',
-            'options' => array(
-                'count'           => 1,
-                'target_element' => $hinhAnhs,
-            )
-        ));*/
 
          $hinhAnhFieldset = new HinhAnhFieldset($objectManager);
          $hinhAnhFieldset->setUseAsBaseFieldset(true);

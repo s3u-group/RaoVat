@@ -1,42 +1,85 @@
 <?php
- $title = 'Sửa Bảng Tin';
+ use Zend\Form\Element;
+
+ $title = 'SỬA BẢNG TIN';
  $this->headTitle($title);
  ?>
- <h1><?php echo $this->escapeHtml($title); ?></h1>
- <a href="<?php echo $this->url('rao_vat');?>">Quay lại</a>
-
- <?php
- $form = $this->form;
- $form->setAttribute('action', $this->url(
-     'rao_vat/crud',
-     array(
-         'action' => 'edit',
-         'id'     => $this->id,
-     )
- ));
+ <h1>
+ 	<?php echo $this->escapeHtml($title); ?>
+ </h1>
+<a href="<?php echo $this->url('rao_vat');?>">Quay lại</a>
+<?php
+ $form->setAttribute('action', $this->url('rao_vat/crud',array('action' => 'edit','id'=> $this->id,)));
+ $form->setAttribute('role','form');
  $form->prepare();
- //die(var_dump($form));
- $formBangTin=$form->get('bang-tin');
- die(var_dump($formBangTin));
  echo $this->form()->openTag($form);
- echo $this->formHidden($formBangTin->get('idTin'));
- echo $this->formLabel($formBangTin->get('tieuDe')).": ";
- echo $this->formInput($formBangTin->get('tieuDe'));
- echo "</br>";
- echo $this->formLabel($formBangTin->get('noiDung'));
- echo ":</br>";
- echo $this->formElement($formBangTin->get('noiDung'));
- echo "</br></br>";
+?>
 
- echo $this->formLabel($formBangTin->get('ngayDang')).": ";
- echo $this->formElement($formBangTin->get('ngayDang'))."&nbsp;&nbsp;&nbsp;&nbsp;";
- 
- echo $this->formLabel($formBangTin->get('ngayKetThuc')).": ";
- echo $this->formElement($formBangTin->get('ngayKetThuc'));
- 
- echo $this->formElement($formBangTin->get('idDanhMuc'))."&nbsp;&nbsp;&nbsp;&nbsp;"; 
- echo "</br></br>";
- echo $this->formRow($form->get('submit'));
- echo $this->form()->closeTag();
- 
- ?>
+<?php
+ $bangTin=$form->get('bang-tin');
+ echo $this->formHidden($bangTin->get('idTin'));
+?>
+<div class="form-group"> 	
+	<?php $tieuDe=$bangTin->get('tieuDe');?>
+	<?php $tieuDe->setAttribute('class','form-control');?>
+	<label><?php echo $tieuDe->getLabel(); ?></label>
+	<?php echo $this->formElement($tieuDe);?> 
+</div>
+<div class="form-group"> 	
+	<?php $noiDung=$bangTin->get('noiDung');?>
+	<?php $noiDung->setAttribute('class','form-control');?>
+	<label><?php echo $noiDung->getLabel(); ?></label>
+	<?php echo $this->formElement($noiDung);?> 
+</div>
+
+<div class="form-group"> 	
+	<?php $ngayDang=$bangTin->get('ngayDang');?>
+	<?php $ngayDang->setAttribute('class','form-control');?>
+	<label><?php echo $ngayDang->getLabel(); ?></label>
+	<?php echo $this->formElement($ngayDang);?> 
+</div>
+<div class="form-group"> 	
+	<?php $ngayKetThuc=$bangTin->get('ngayKetThuc');?>
+	<?php $ngayKetThuc->setAttribute('class','form-control');?>
+	<label><?php echo $ngayKetThuc->getLabel(); ?></label>
+	<?php echo $this->formElement($ngayKetThuc);?> 
+</div>
+<div class="form-group"> 	
+	<?php $khuVuc=$bangTin->get('idKhuVuc');?>
+	<?php $khuVuc->setLabel('Khu vực'); ?>
+	<?php $khuVuc->setAttribute('class','form-control');?>
+	<label><?php echo $khuVuc->getLabel(); ?></label>
+	<?php $khuVuc->setValueOptions($this->MakeArrayOptionTaxonomy($khuVucs));?> 	 	
+	<?php echo $this->formElement($khuVuc);?> 
+</div>
+
+
+<div class="form-group"> 	
+	<?php $mucDoVip=$bangTin->get('idMucDoVip');?>
+	<?php $mucDoVip->setLabel('Mức độ vip'); ?>
+	<?php $mucDoVip->setAttribute('class','form-control');?>
+	<label><?php echo $mucDoVip->getLabel(); ?></label>
+	<?php $mucDoVip->setValueOptions($this->makeArrayOptionMucDoVip($mucDoVips));?> 	 	
+	<?php echo $this->formElement($mucDoVip);?> 
+</div>
+
+<div class="form-group"> 	
+	<?php $loaiTin=$bangTin->get('idLoaiTin');?>
+	<?php $loaiTin->setLabel('Loại tin'); ?>
+	<?php $loaiTin->setAttribute('class','form-control');?>
+	<label><?php echo $loaiTin->getLabel(); ?></label>
+	<?php $loaiTin->setValueOptions($this->makeArrayOptionLoaiTin($loaiTins));?> 	 	
+	<?php echo $this->formElement($loaiTin);?> 
+</div>
+<?php 
+	foreach($hinhAnhs as $hinhAnh)
+	{
+		echo '<img src="../img/01b5870a2d0c5c23debf71d927b18ab7_1a.jpg"/>';
+	}  
+?>
+<?php 
+	$submit=$form->get('submit'); 
+	$submit->setValue('Sửa Bảng Tin');
+	echo $this->formSubmit($submit);
+	echo $this->form()->closeTag();
+?>
