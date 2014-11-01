@@ -161,15 +161,36 @@
      
      $entityManager=$this->getEntityManager();
      $bangTin= $entityManager->getRepository('RaoVat\Entity\BangTin')->find($id);
-     $form=new CreateBangTinForm($entityManager);
+     //$form=new CreateBangTinForm($entityManager);
 
      if(!$bangTin)
      {
         return $this->redirect()->toRoute('rao_vat');
      }
             
+     $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
+     $queryBuilder = $repository->createQueryBuilder('hA');
+     $queryBuilder->add('where','hA.idTin='.$bangTin->getIdTin());
+     $query = $queryBuilder->getQuery();
+     $hinhAnhs = $query->execute();
+
+     //die(var_dump($hinhAnhs));
+     if($hinhAnhs)
+     {
+       foreach ($hinhAnhs as $hinhAnh) {
+         // mọi người chỉnh lại đường dẫn tới bức hình lưu trong máy nhé!
+         $mask ='C:/wamp/www/Zend/zend2/public/img/'.$hinhAnh->getViTri();
+         unlink($mask);
+         
+         $entityManager->remove($hinhAnh);
+         $entityManager->flush();  
+       }
+     }      
+
      $entityManager->remove($bangTin);
      $entityManager->flush();       
+
+     
 
      return $this->redirect()->toRoute('rao_vat');
    }
