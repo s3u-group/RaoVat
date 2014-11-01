@@ -70,27 +70,29 @@
 
         $entityManager->persist($bangTin);
         $entityManager->flush();
-
         $repository = $entityManager->getRepository('RaoVat\Entity\BangTin');
         $queryBuilder = $repository->createQueryBuilder('bt');
-        $queryBuilder->add('where','bt.tieuDe =\''.$post['bang-tin']['tieuDe'].'\'');
+        $queryBuilder->add('where','bt.tieuDe =\''.$post['bang-tin']['tieuDe'].'\''.' and bt.noiDung =\''.$post['bang-tin']['noiDung'].'\'');
         $query = $queryBuilder->getQuery(); 
         $bT = $query->execute();  // lấy bảng tin
         $idTin=$bT[0];
+        //die(var_dump($post['bang-tin']['hinhAnhs']['hinhAnhs'][0]['error']));
+        if($post['bang-tin']['hinhAnhs']['hinhAnhs'][0]['error']==0)
+        {
+          foreach ($post['bang-tin']['hinhAnhs']['hinhAnhs'] as $p) {
+             $uniqueToken=md5(uniqid(mt_rand(),true));
+             $newName=$uniqueToken.'_'.$p['name'];
+             $arrayImage[]=$newName;
+             $filter = new \Zend\Filter\File\Rename("./public/img/".$newName);
+             $filter->filter($p);
 
-        foreach ($post['bang-tin']['hinhAnhs']['hinhAnhs'] as $p) {
-           $uniqueToken=md5(uniqid(mt_rand(),true));
-           $newName=$uniqueToken.'_'.$p['name'];
-           $arrayImage[]=$newName;
-           $filter = new \Zend\Filter\File\Rename("./public/img/".$newName);
-           $filter->filter($p);
-
-           $hinhAnh=new HinhAnh();       
-           $hinhAnh->setViTri($newName);
-           $hinhAnh->setIdTin($idTin);
-           //$entityManager->remove($bangTin);
-           $entityManager->persist($hinhAnh);
-           $entityManager->flush();
+             $hinhAnh=new HinhAnh();       
+             $hinhAnh->setViTri($newName);
+             $hinhAnh->setIdTin($idTin);
+             
+             $entityManager->persist($hinhAnh);
+             $entityManager->flush();
+          }
         }
         return $this->redirect()->toRoute('rao_vat');
       }
@@ -135,12 +137,42 @@
      $mucDoVips = $entityManager->getRepository('RaoVat\Entity\MucDoVip')->findAll();
 
      $loaiTins = $entityManager->getRepository('RaoVat\Entity\LoaiTin')->findAll();
-     
+     $request = $this->getRequest();
      if ($this->request->isPost()) {
+          $post = array_merge_recursive(
+              $request->getPost()->toArray(),
+              $request->getFiles()->toArray()
+          );
+
          $form->setData($this->request->getPost());
          if ($form->isValid()) {
+           $entityManager->flush();
+           if($post['bang-tin']['hinhAnhs']['hinhAnhs'][0]['error']==0)
+           {
+             foreach ($post['bang-tin']['hinhAnhs']['hinhAnhs'] as $p) 
+             {
+               $uniqueToken=md5(uniqid(mt_rand(),true));
+               $newName=$uniqueToken.'_'.$p['name'];
+               $arrayImage[]=$newName;
+               $filter = new \Zend\Filter\File\Rename("./public/img/".$newName);
+               $filter->filter($p);
+      
+               $hinhAnh=new HinhAnh();       
+               $hinhAnh->setViTri($newName);
+               $hinhAnh->setIdTin($bangTin);
+               
+               $entityManager->persist($hinhAnh);
+               $entityManager->flush();
+               
+             }
+           }
+         }
+         else
+         {
+           die(var_dump($form->getMessages()));
          }
       }
+      
      return array(
         'form' => $form,
         'id'=>$id, 
@@ -161,8 +193,6 @@
      
      $entityManager=$this->getEntityManager();
      $bangTin= $entityManager->getRepository('RaoVat\Entity\BangTin')->find($id);
-     //$form=new CreateBangTinForm($entityManager);
-
      if(!$bangTin)
      {
         return $this->redirect()->toRoute('rao_vat');
@@ -174,13 +204,12 @@
      $query = $queryBuilder->getQuery();
      $hinhAnhs = $query->execute();
 
-     //die(var_dump($hinhAnhs));
      if($hinhAnhs)
      {
        foreach ($hinhAnhs as $hinhAnh) {
          // mọi người chỉnh lại đường dẫn tới bức hình lưu trong máy nhé!
          $mask ='C:/wamp/www/Zend/zend2/public/img/'.$hinhAnh->getViTri();
-         unlink($mask);
+         array_map( "unlink", glob( $mask ) );
          
          $entityManager->remove($hinhAnh);
          $entityManager->flush();  
@@ -194,5 +223,23 @@
 
      return $this->redirect()->toRoute('rao_vat');
    }
+
+   public function deleteImageAction()
+  {
+     $id = (int) $this->params()->fromRoute('id', 0);
+     if (!$id) {
+         return $this->redirect()->toRoute('rao_vat');
+     }  
+     $entityManager=$this->getEntityManager();
+     $hinhAnh= $entityManager->getRepository('RaoVat\Entity\HinhAnh')->find($id);
+     $idTin=$hinhAnh;
+     $mask ='C:/wamp/www/Zend/zend2/public/img/'.$hinhAnh->getViTri();
+     array_map( "unlink", glob( $mask ) );         
+     $entityManager->remove($hinhAnh);
+     $entityManager->flush();  
+     return $this->redirect()->toRoute('rao_vat/crud',array('action'=>'edit','id'=>$idTin->getIdTin()->getIdTin()));
+
+  }
+
  }
 ?>

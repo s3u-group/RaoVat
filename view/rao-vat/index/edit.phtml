@@ -44,6 +44,13 @@
 	<label><?php echo $ngayKetThuc->getLabel(); ?></label>
 	<?php echo $this->formElement($ngayKetThuc); ?> 
 </div>
+<div class="form-group"> 
+	<?php $danhMuc=$bangTin->get('idDanhMuc');?>
+	<?php $danhMuc->setAttribute('class','form-control');?>
+	<label><?php echo $danhMuc->getLabel(); ?></label>
+	<?php $danhMuc->setValueOptions($this->MakeArrayOptionTaxonomy($danhMucs));?> 	 	
+	<?php echo $this->formElement($danhMuc);?> 
+</div>
 <div class="form-group"> 	
 	<?php $khuVuc=$bangTin->get('idKhuVuc'); ?>
 	<?php $khuVuc->setLabel('Khu vực'); ?>
@@ -71,13 +78,30 @@
 	<?php $loaiTin->setValueOptions($this->makeArrayOptionLoaiTin($loaiTins)); ?> 	 	
 	<?php echo $this->formElement($loaiTin); ?> 
 </div>
+<table>
+	
 <?php 
 	foreach($hinhAnhs as $hinhAnh)
-	{
-		echo '<img src="../img/'.$hinhAnh->getViTri().'"/>';
+	{?>
+		<tr>
+			<td>
+				<?php echo '<img src="../img/'.$hinhAnh->getViTri().'"/>'; ?>
+			</td>
+			<td>
+				<a href="<?php echo $this->url('rao_vat/crud',
+             array('action'=>'deleteImage','id'=>$hinhAnh->getIdHinhAnh()));?> ">Xóa</a>
+			</td>
+		</tr>
+	<?php
+		
 	}  
 ?>
-<br>
+</table>
+<div class="form-group"> 	
+	<?php $hinhAnh=$bangTin->get('hinhAnhs')->get('hinhAnhs');?>
+	<?php $hinhAnh->setAttribute('class','form-control');?> 		
+	<?php echo $this->formElement($hinhAnh);?> 
+</div>
 <?php 
 	$submit=$form->get('submit'); 
 	$submit->setValue('Sửa Bảng Tin');
