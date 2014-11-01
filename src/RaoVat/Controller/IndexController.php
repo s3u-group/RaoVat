@@ -82,7 +82,7 @@
            $uniqueToken=md5(uniqid(mt_rand(),true));
            $newName=$uniqueToken.'_'.$p['name'];
            $arrayImage[]=$newName;
-           $filter = new \Zend\Filter\File\Rename("./public/img/BangTin/".$newName);
+           $filter = new \Zend\Filter\File\Rename("./public/img/".$newName);
            $filter->filter($p);
 
            $hinhAnh=new HinhAnh();       

@@ -7,9 +7,9 @@
  <h1>
  	<?php echo $this->escapeHtml($title); ?>
  </h1>
-<a href="<?php echo $this->url('rao_vat');?>">Quay lại</a>
+<a href="<?php echo $this->url('rao_vat'); ?>">Quay lại</a>
 <?php
- $form->setAttribute('action', $this->url('rao_vat/crud',array('action' => 'edit','id'=> $this->id,)));
+ $form->setAttribute('action', $this->url('rao_vat/crud',array('action' => 'edit','id'=> $this->id)));
  $form->setAttribute('role','form');
  $form->prepare();
  echo $this->form()->openTag($form);
@@ -20,63 +20,64 @@
  echo $this->formHidden($bangTin->get('idTin'));
 ?>
 <div class="form-group"> 	
-	<?php $tieuDe=$bangTin->get('tieuDe');?>
-	<?php $tieuDe->setAttribute('class','form-control');?>
+	<?php $tieuDe=$bangTin->get('tieuDe'); ?>
+	<?php $tieuDe->setAttribute('class','form-control'); ?>
 	<label><?php echo $tieuDe->getLabel(); ?></label>
-	<?php echo $this->formElement($tieuDe);?> 
+	<?php echo $this->formElement($tieuDe); ?> 
 </div>
 <div class="form-group"> 	
-	<?php $noiDung=$bangTin->get('noiDung');?>
+	<?php $noiDung=$bangTin->get('noiDung'); ?>
 	<?php $noiDung->setAttribute('class','form-control');?>
 	<label><?php echo $noiDung->getLabel(); ?></label>
-	<?php echo $this->formElement($noiDung);?> 
+	<?php echo $this->formElement($noiDung); ?> 
 </div>
 
 <div class="form-group"> 	
-	<?php $ngayDang=$bangTin->get('ngayDang');?>
-	<?php $ngayDang->setAttribute('class','form-control');?>
+	<?php $ngayDang=$bangTin->get('ngayDang'); ?>
+	<?php $ngayDang->setAttribute('class','form-control'); ?>
 	<label><?php echo $ngayDang->getLabel(); ?></label>
-	<?php echo $this->formElement($ngayDang);?> 
+	<?php echo $this->formElement($ngayDang); ?> 
 </div>
 <div class="form-group"> 	
-	<?php $ngayKetThuc=$bangTin->get('ngayKetThuc');?>
-	<?php $ngayKetThuc->setAttribute('class','form-control');?>
+	<?php $ngayKetThuc=$bangTin->get('ngayKetThuc'); ?>
+	<?php $ngayKetThuc->setAttribute('class','form-control'); ?>
 	<label><?php echo $ngayKetThuc->getLabel(); ?></label>
-	<?php echo $this->formElement($ngayKetThuc);?> 
+	<?php echo $this->formElement($ngayKetThuc); ?> 
 </div>
 <div class="form-group"> 	
-	<?php $khuVuc=$bangTin->get('idKhuVuc');?>
+	<?php $khuVuc=$bangTin->get('idKhuVuc'); ?>
 	<?php $khuVuc->setLabel('Khu vực'); ?>
-	<?php $khuVuc->setAttribute('class','form-control');?>
+	<?php $khuVuc->setAttribute('class','form-control'); ?>
 	<label><?php echo $khuVuc->getLabel(); ?></label>
-	<?php $khuVuc->setValueOptions($this->MakeArrayOptionTaxonomy($khuVucs));?> 	 	
-	<?php echo $this->formElement($khuVuc);?> 
+	<?php $khuVuc->setValueOptions($this->MakeArrayOptionTaxonomy($khuVucs)); ?> 	 	
+	<?php echo $this->formElement($khuVuc); ?> 
 </div>
 
 
 <div class="form-group"> 	
-	<?php $mucDoVip=$bangTin->get('idMucDoVip');?>
+	<?php $mucDoVip=$bangTin->get('idMucDoVip'); ?>
 	<?php $mucDoVip->setLabel('Mức độ vip'); ?>
-	<?php $mucDoVip->setAttribute('class','form-control');?>
+	<?php $mucDoVip->setAttribute('class','form-control'); ?>
 	<label><?php echo $mucDoVip->getLabel(); ?></label>
-	<?php $mucDoVip->setValueOptions($this->makeArrayOptionMucDoVip($mucDoVips));?> 	 	
-	<?php echo $this->formElement($mucDoVip);?> 
+	<?php $mucDoVip->setValueOptions($this->makeArrayOptionMucDoVip($mucDoVips)); ?> 	 	
+	<?php echo $this->formElement($mucDoVip); ?> 
 </div>
 
 <div class="form-group"> 	
-	<?php $loaiTin=$bangTin->get('idLoaiTin');?>
+	<?php $loaiTin=$bangTin->get('idLoaiTin'); ?>
 	<?php $loaiTin->setLabel('Loại tin'); ?>
-	<?php $loaiTin->setAttribute('class','form-control');?>
+	<?php $loaiTin->setAttribute('class','form-control'); ?>
 	<label><?php echo $loaiTin->getLabel(); ?></label>
-	<?php $loaiTin->setValueOptions($this->makeArrayOptionLoaiTin($loaiTins));?> 	 	
-	<?php echo $this->formElement($loaiTin);?> 
+	<?php $loaiTin->setValueOptions($this->makeArrayOptionLoaiTin($loaiTins)); ?> 	 	
+	<?php echo $this->formElement($loaiTin); ?> 
 </div>
 <?php 
 	foreach($hinhAnhs as $hinhAnh)
 	{
-		echo '<img src="../img/01b5870a2d0c5c23debf71d927b18ab7_1a.jpg"/>';
+		echo '<img src="../img/'.$hinhAnh->getViTri().'"/>';
 	}  
 ?>
+<br>
 <?php 
 	$submit=$form->get('submit'); 
 	$submit->setValue('Sửa Bảng Tin');
