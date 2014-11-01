@@ -4,6 +4,7 @@ namespace RaoVat\Form;
 use Doctrine\Common\Persistence\ObjectManager;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\Form\Form;
+use RaoVat\Form\BangTinFieldset;
 
 class UpdateBangTinForm extends Form
 {

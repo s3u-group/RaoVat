@@ -13,6 +13,7 @@
 
 
  use RaoVat\Form\UpdateBangTinForm;
+ use S3UTaxonomy\Form\CreateTermTaxonomyForm;
  
  class IndexController extends AbstractActionController
  {
@@ -117,6 +118,7 @@
      $form= new UpdateBangTinForm($entityManager);         
      $bangTin = $entityManager->getRepository('RaoVat\Entity\BangTin')->find($id);
      $form->bind($bangTin);
+
     
      $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
      $queryBuilder = $repository->createQueryBuilder('hA');
@@ -131,7 +133,6 @@
      $khuVucs=$taxonomyKhuVuc->getListChildTaxonomy('khu-vuc');// đưa vào taxonomy dạng slug
 
      $mucDoVips = $entityManager->getRepository('RaoVat\Entity\MucDoVip')->findAll();
-     
 
      $loaiTins = $entityManager->getRepository('RaoVat\Entity\LoaiTin')->findAll();
      
