@@ -28,6 +28,12 @@ class HinhAnh
 	* @ORM\Column(name="vi_tri")
 	*/
 	private $viTri;
+
+	/**
+	 * @ORM\Column(name="main", type="integer", length=11)
+	 */
+
+	private $main=0;
 		
 
 	public function setIdHinhAnh($idHinhAnh)
@@ -59,6 +65,15 @@ class HinhAnh
 	{
 		return $this->viTri;
 	}
-}
 
-	?>
+	public function setMain($main)
+	{
+		$this->main=$main;
+	}
+
+	public function getMain()
+	{
+		return $this->main;
+	}
+}
+?>

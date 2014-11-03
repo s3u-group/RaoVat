@@ -85,8 +85,11 @@
 	{?>
 		<tr>
 			<td>
-				<?php echo '<img src="../img/'.$hinhAnh->getViTri().'"/>'; ?>
+				<?php //die(var_dump($hinhAnh->getViTri())); ?>
+				<?php echo '<img src="../../img/'.$hinhAnh->getViTri().'" width="50px"/>'; ?>
 			</td>
+		<tr>
+		</tr>
 			<td>
 				<a href="<?php echo $this->url('rao_vat/crud',
              array('action'=>'deleteImage','id'=>$hinhAnh->getIdHinhAnh()));?> ">Xóa</a>
