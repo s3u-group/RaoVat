@@ -32,10 +32,10 @@ CREATE TABLE IF NOT EXISTS `muc_do_vip` (
 CREATE TABLE IF NOT EXISTS `hinh_anh` (
   `id_hinh_anh` int(11) NOT NULL AUTO_INCREMENT,
   `id_tin` int(11) NOT NULL,
-  `vi_tri` varchar(255) DEFAULT NULL,
+  `vi_tri` varchar(255) NOT NULL,
+  `main` int(11) NOT NULL,
   PRIMARY KEY (`id_hinh_anh`),
   KEY `fk_hinh_anh_bang_tin` (`id_tin`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 ALTER TABLE `hinh_anh`
   ADD CONSTRAINT `fk_hinh_anh_bang_tin` FOREIGN KEY (`id_tin`) REFERENCES `tin` (`id_tin`);
