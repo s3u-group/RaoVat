@@ -80,18 +80,61 @@
 </div>
 <table>
 	
-<?php 
+<?php $i=0;
 	foreach($hinhAnhs as $hinhAnh)
 	{?>
-		<tr>
-			<td>
-				<?php //die(var_dump($hinhAnh->getViTri())); ?>
+		<?php $i+=1;
+		if($i==1)
+		{	
+			echo '<tr>';
+				echo '<td>
+					<table>
+						<tr>
+							<td colspan="2"><img src="../../img/'.$hinhAnh->getViTri().'" width="200px",height="200px"/>
+							</td>
+						</tr>
+						<tr>
+							<td><a href="'.$this->url('rao_vat/crud',
+	             array('action'=>'deleteImage','id'=>$hinhAnh->getIdHinhAnh())).'">Xóa</a>
+							</td>
+							
+							<td><a href="'.$this->url('rao_vat/crud',
+	             array('action'=>'deleteImage','id'=>$hinhAnh->getIdHinhAnh())).'">Ảnh đại diện</a>
+							</td>
+						</tr>
+					</table>
+				</td>';
+		}
+		if($i==2)
+		{
+			echo '<td>
+					<table>
+						<tr>
+							<td colspan="2"><img src="../../img/'.$hinhAnh->getViTri().'" width="200px",height="200px"/>
+							</td>
+						</tr>
+						<tr>
+							<td><a href="'.$this->url('rao_vat/crud',
+	             array('action'=>'deleteImage','id'=>$hinhAnh->getIdHinhAnh())).'">Xóa</a>
+							</td>							
+							<td><a href="'.$this->url('rao_vat/crud',
+	             array('action'=>'deleteImage','id'=>$hinhAnh->getIdHinhAnh())).'">Ảnh đại diện</a>
+							</td>
+						</tr>
+					</table>
+				</td>';
+			echo "</tr>";
+			$i=0;			
+		}		
+		?>		
+		<!-- <tr>
+			<td>				
 				<?php echo '<img src="../../img/'.$hinhAnh->getViTri().'" width="50px"/>'; ?>
 			</td>
 			<td>
 				&nbsp;
 			</td>
-		<tr>
+		</tr>
 		</tr>
 			<td>
 				<a href="<?php echo $this->url('rao_vat/crud',
@@ -103,9 +146,8 @@
              array('action'=>'editAnhDaiDien','id'=>$hinhAnh->getIdHinhAnh()));?> ">Ảnh đại diện</a>
              	<?php }?>
 			</td>
-		</tr>
-	<?php
-		
+		</tr> -->
+	<?php		
 	}  
 ?>
 </table>
