@@ -96,12 +96,12 @@
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<td align="center">
 							<?php echo '<a href="'.$this->url('rao_vat/crud',
 	             array('action'=>'deleteImage','id'=>$hinhAnh->getIdHinhAnh())).'">Xóa</a>'; ?>
 							</td>
 							
-							<td>
+							<td align="center">
 							<?php if($hinhAnh->getMain()==0){ ?>
 							<?php echo '<a href="'.$this->url('rao_vat/crud',
 	             array('action'=>'editAnhDaiDien','id'=>$hinhAnh->getIdHinhAnh())).'">Ảnh đại diện</a>'; ?>
@@ -121,11 +121,11 @@
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<td align="center">
 							<?php echo '<a href="'.$this->url('rao_vat/crud',
 	             array('action'=>'deleteImage','id'=>$hinhAnh->getIdHinhAnh())).'">Xóa</a>'; ?>
 							</td>							
-							<td>
+							<td align="center">
 							<?php if($hinhAnh->getMain()==0){ ?>
 							<?php echo '<a href="'.$this->url('rao_vat/crud',
 	             array('action'=>'editAnhDaiDien','id'=>$hinhAnh->getIdHinhAnh())).'">Ảnh đại diện</a>'; ?>
@@ -144,6 +144,7 @@
 	<?php $hinhAnh=$bangTin->get('hinhAnhs')->get('hinhAnhs');?>
 	<?php $hinhAnh->setAttribute('class','form-control');?> 		
 	<?php echo $this->formElement($hinhAnh);?> 
+	<?php  echo 'Max file size post: '.ini_get('post_max_size'); ?>
 </div>
 <?php 
 	$submit=$form->get('submit'); 
