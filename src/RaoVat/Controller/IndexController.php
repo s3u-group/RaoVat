@@ -167,8 +167,16 @@
            $entityManager->flush();
            if($post['bang-tin']['hinhAnhs']['hinhAnhs'][0]['error']==0)
            {
+             $coAnhDaiDien=0;
+
+             $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
+             $queryBuilder = $repository->createQueryBuilder('hA');
+             $queryBuilder->add('where','hA.main=1 and hA.idTin='.$bangTin->getIdTin());
+             $query = $queryBuilder->getQuery();
+             $anhDaiDien = $query->execute();
              foreach ($post['bang-tin']['hinhAnhs']['hinhAnhs'] as $p) 
              {
+
                $uniqueToken=md5(uniqid(mt_rand(),true));
                $newName=$uniqueToken.'_'.$p['name'];
                $arrayImage[]=$newName;
@@ -178,6 +186,11 @@
                $hinhAnh=new HinhAnh();       
                $hinhAnh->setViTri($newName);
                $hinhAnh->setIdTin($bangTin);
+               $coAnhDaiDien++;
+               if(!$anhDaiDien&&$coAnhDaiDien==1)
+               {
+                   $hinhAnh->setMain(1);
+               }
                
                $entityManager->persist($hinhAnh);
                $entityManager->flush();
