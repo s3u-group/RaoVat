@@ -208,7 +208,7 @@
      {
        foreach ($hinhAnhs as $hinhAnh) {
          // mọi người chỉnh lại đường dẫn tới bức hình lưu trong máy nhé!
-         $mask ='C:/wamp/www/Zend/zend2/public/img/'.$hinhAnh->getViTri();
+         $mask =__ROOT_PATH__.'/public/img/'.$hinhAnh->getViTri();
          array_map( "unlink", glob( $mask ) );
          
          $entityManager->remove($hinhAnh);
