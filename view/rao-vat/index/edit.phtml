@@ -88,11 +88,20 @@
 				<?php //die(var_dump($hinhAnh->getViTri())); ?>
 				<?php echo '<img src="../../img/'.$hinhAnh->getViTri().'" width="50px"/>'; ?>
 			</td>
+			<td>
+				&nbsp;
+			</td>
 		<tr>
 		</tr>
 			<td>
 				<a href="<?php echo $this->url('rao_vat/crud',
              array('action'=>'deleteImage','id'=>$hinhAnh->getIdHinhAnh()));?> ">Xóa</a>
+			</td>
+			<td>
+				<?php if($hinhAnh->getMain()==0){ ?>
+				<a href="<?php echo $this->url('rao_vat/crud',
+             array('action'=>'editAnhDaiDien','id'=>$hinhAnh->getIdHinhAnh()));?> ">Ảnh đại diện</a>
+             	<?php }?>
 			</td>
 		</tr>
 	<?php
