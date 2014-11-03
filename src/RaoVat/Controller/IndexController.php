@@ -37,7 +37,7 @@
     return array('bangTins'=>$bangTins);
  	}
 
- 	public function addAction()
+ 	public function addActiond()
  	{
     if(!$this->zfcUserAuthentication()->hasIdentity())
     {
@@ -59,7 +59,6 @@
      
     $loaiTins = $entityManager->getRepository('RaoVat\Entity\LoaiTin')->findAll();
 
-    
     $request = $this->getRequest();
     if ($request->isPost())
     { 
@@ -214,7 +213,7 @@
      $queryBuilder->add('where','hA.idTin='.$bangTin->getIdTin());
      $query = $queryBuilder->getQuery();
      $hinhAnhs = $query->execute(); 
-          
+
      return array(
         'form' => $form,
         'id'=>$id, 
