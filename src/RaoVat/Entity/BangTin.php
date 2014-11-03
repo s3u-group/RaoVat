@@ -45,7 +45,7 @@
 	* @ORM\Column(name="id_user")
 	* @ORM\ManyToOne(targetEntity="DanhMuc\Entity\SystemUser",cascade={"persist"})
 	*/
-	private $idUser=1; //mai mot sua
+	private $idUser;
 
 	/**
 	* @ORM\Column(name="id_danh_muc")
