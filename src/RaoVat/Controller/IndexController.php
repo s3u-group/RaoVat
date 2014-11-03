@@ -20,7 +20,7 @@
  	private $entityManager;
 
   public function getEntityManager()
-  {
+  {    
      if(!$this->entityManager)
      {
        $this->entityManager=$this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
@@ -127,6 +127,11 @@
   // sửa một tin đăng
  	public function editAction()
  	{
+      if(!$this->zfcUserAuthentication()->hasIdentity())
+      {
+        return $this->redirect()->toRoute('zfcuser');
+      }
+
      $entityManager=$this->getEntityManager();
 
      $id = (int) $this->params()->fromRoute('id', 0);
@@ -203,7 +208,13 @@
            die(var_dump($form->getMessages()));
          }
       }
-      
+
+     $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
+     $queryBuilder = $repository->createQueryBuilder('hA');
+     $queryBuilder->add('where','hA.idTin='.$bangTin->getIdTin());
+     $query = $queryBuilder->getQuery();
+     $hinhAnhs = $query->execute(); 
+          
      return array(
         'form' => $form,
         'id'=>$id, 
@@ -217,6 +228,11 @@
 
   public function editAnhDaiDienAction()
   {
+      if(!$this->zfcUserAuthentication()->hasIdentity())
+      {
+        return $this->redirect()->toRoute('zfcuser');
+      }
+
      $id = (int) $this->params()->fromRoute('id', 0);
      if (!$id) {
          return $this->redirect()->toRoute('rao_vat');
@@ -252,6 +268,11 @@
   // xóa một tin đăng
  	public function deleteAction()
  	{
+      if(!$this->zfcUserAuthentication()->hasIdentity())
+      {
+        return $this->redirect()->toRoute('zfcuser');
+      }
+
      $id = (int) $this->params()->fromRoute('id', 0);
      if (!$id) {
          return $this->redirect()->toRoute('rao_vat');
@@ -293,6 +314,11 @@
    // xóa hình ảnh trong một tin đăng 
    public function deleteImageAction()
   {
+    if(!$this->zfcUserAuthentication()->hasIdentity())
+    {
+      return $this->redirect()->toRoute('zfcuser');
+    }
+
      $id = (int) $this->params()->fromRoute('id', 0);
      if (!$id) {
          return $this->redirect()->toRoute('rao_vat');
