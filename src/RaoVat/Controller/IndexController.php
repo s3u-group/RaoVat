@@ -39,6 +39,11 @@
 
  	public function addAction()
  	{
+    if(!$this->zfcUserAuthentication()->hasIdentity())
+    {
+      return $this->redirect()->toRoute('zfcuser');
+    }
+
     $entityManager=$this->getEntityManager();
     $bangTin=new BangTin();
     $form= new CreateBangTinForm($entityManager);
@@ -66,8 +71,14 @@
           $request->getFiles()->toArray()
       );
       $form->setData($post);
-      if ($form->isValid()) {
-
+      if ($form->isValid()) {     
+      //kiểm tra nếu có đăng nhập   
+        if ($this->zfcUserAuthentication()->hasIdentity()) {
+          //get the user_id of the user
+          $idUser=$this->zfcUserAuthentication()->getIdentity()->getId();
+        }        
+        $bangTin->setIdUser($idUser);
+        //die(var_dump($bangTin));
         $entityManager->persist($bangTin);
         $entityManager->flush();
         $repository = $entityManager->getRepository('RaoVat\Entity\BangTin');
@@ -287,6 +298,20 @@
      array_map( "unlink", glob( $mask ) );   
      $entityManager->remove($hinhAnh);
      $entityManager->flush();  
+     if($idTin->getMain()==1)
+     {
+       $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
+       $queryBuilder = $repository->createQueryBuilder('hA');
+       $queryBuilder->add('where','hA.idTin='.$idTin->getIdTin()->getIdTin());
+       $query = $queryBuilder->getQuery();
+       $hinhAnhs = $query->execute();
+       if($hinhAnhs)
+       {
+        $hinhAnhs[0]->setMain(1);
+        $entityManager->flush();  
+
+       }
+     }
      return $this->redirect()->toRoute('rao_vat/crud',array('action'=>'edit','id'=>$idTin->getIdTin()->getIdTin()));
 
   }

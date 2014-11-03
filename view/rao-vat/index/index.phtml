@@ -8,6 +8,12 @@
       return false;
     }
 </SCRIPT>
+<?php
+if ($this->zfcUserIdentity()) {
+          //get the user_id of the user
+          echo '<h1>Hello: '.$this->zfcUserIdentity()->getEmail().'</h1>';
+        }   
+?>
 <h1>TRANG RAO VẶT</h1>
 
 <p>
