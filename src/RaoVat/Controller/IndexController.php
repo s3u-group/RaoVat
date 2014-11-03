@@ -37,7 +37,7 @@
     return array('bangTins'=>$bangTins);
  	}
 
- 	public function addActiondfasd()
+ 	public function addAction()
  	{
     if(!$this->zfcUserAuthentication()->hasIdentity())
     {
