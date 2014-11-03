@@ -233,8 +233,10 @@
      $entityManager=$this->getEntityManager();
      $hinhAnh= $entityManager->getRepository('RaoVat\Entity\HinhAnh')->find($id);
      $idTin=$hinhAnh;
-     $mask ='C:/wamp/www/Zend/zend2/public/img/'.$hinhAnh->getViTri();
-     array_map( "unlink", glob( $mask ) );         
+     // KHAI BÁO ROOT_PATH TRONG FILE INDEX.PHP TRONG THƯ MỤC PUBLIC (ZEND/PUCBLIC/INDEX) NHƯ SAU:
+     // define('ROOT_PATH', dirname(__DIR__));
+     $mask =__ROOT_PATH__.'/public/img/'.$hinhAnh->getViTri();
+     array_map( "unlink", glob( $mask ) );   
      $entityManager->remove($hinhAnh);
      $entityManager->flush();  
      return $this->redirect()->toRoute('rao_vat/crud',array('action'=>'edit','id'=>$idTin->getIdTin()->getIdTin()));
