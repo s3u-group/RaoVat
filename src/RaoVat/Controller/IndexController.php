@@ -10,6 +10,7 @@
  use RaoVat\Entity\MucDoVip;
  use RaoVat\Entity\LoaiTin;
  use RaoVat\Entity\HinhAnh;
+ use DateTime;
 
 
  use RaoVat\Form\UpdateBangTinForm;
@@ -62,14 +63,15 @@
     $request = $this->getRequest();
     if ($request->isPost())
     { 
-      $form->setData($request->getPost());
-      
       // Make certain to merge the files info!
       $post = array_merge_recursive(
           $request->getPost()->toArray(),
           $request->getFiles()->toArray()
       );
+      $post['bang-tin']['ngayDang']=date("Y-m-d", strtotime($post['bang-tin']['ngayDang']));
+      $post['bang-tin']['ngayKetThuc']=date("Y-m-d", strtotime($post['bang-tin']['ngayKetThuc']));
       $form->setData($post);
+      
       if ($form->isValid()) {     
       //kiểm tra nếu có đăng nhập   
         if ($this->zfcUserAuthentication()->hasIdentity()) {
@@ -77,7 +79,6 @@
           $idUser=$this->zfcUserAuthentication()->getIdentity()->getId();
         }        
         $bangTin->setIdUser($idUser);
-        //die(var_dump($bangTin));
         $entityManager->persist($bangTin);
         $entityManager->flush();
         $repository = $entityManager->getRepository('RaoVat\Entity\BangTin');
@@ -86,7 +87,6 @@
         $query = $queryBuilder->getQuery(); 
         $bT = $query->execute();  // lấy bảng tin
         $idTin=$bT[0];
-        //die(var_dump($post['bang-tin']['hinhAnhs']['hinhAnhs'][0]['error']));
         if($post['bang-tin']['hinhAnhs']['hinhAnhs'][0]['error']==0)
         {
           $coAnhDaiDien=0;// khi thêm thì mặc định ảnh số một sẽ là ảnh đại diện. 
@@ -305,8 +305,6 @@
      $entityManager->remove($bangTin);
      $entityManager->flush();       
 
-     
-
      return $this->redirect()->toRoute('rao_vat');
    }
 
@@ -351,7 +349,6 @@
        }
      }
      return $this->redirect()->toRoute('rao_vat/crud',array('action'=>'edit','id'=>$idTin->getIdTin()->getIdTin()));
-
   }
 
  }

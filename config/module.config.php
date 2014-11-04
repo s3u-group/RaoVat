@@ -66,4 +66,30 @@ return array(
 
         ),
     ),
+
+    /*'bjyauthorize'=>array(
+
+        'guards'=>array(
+            'BjyAuthorize\Guard\Controller'=>array(
+                
+                array(
+                    'controller'=>array('zfcuser'),                   
+                    'roles'     =>array(),
+                ),
+
+                array(
+                    'controller'=>array('RaoVat\Controller\Index'),
+                    'action'    =>array('index'),
+                    'roles'     =>array('khach','nguoi-dung'),
+                ),
+
+                array(
+                    'controller'=>array('RaoVat\Controller\Index'),
+                    'action'    =>array('add','delete','edit','editAnhDaiDien','deleteImage'),
+                    'roles'     =>array('nguoi-dung'),
+                ),
+              
+            ),
+        ),
+    ),*/
 );
