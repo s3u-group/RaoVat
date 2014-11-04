@@ -32,7 +32,6 @@ class HinhAnhFieldset extends Fieldset implements InputFilterProviderInterface
          // File Input
         $image = new Element\File('hinhAnhs');
         $image->setAttribute('id', 'hinhAnhs')  
-        //      ->setAttribute('options',array(10,15))             
               ->setAttribute('required',true)
               
               ->setAttribute('multiple', true);   // That's it
@@ -45,14 +44,6 @@ class HinhAnhFieldset extends Fieldset implements InputFilterProviderInterface
     public function getInputFilterSpecification()
     {
         return array(
-            'validators' => array(
-                'hinhAnhs' => array(
-                    'type' => '\Zend\Validator\File\Size',
-                    'options' => array(
-                        'max' => '1000MB'
-                    )
-                )
-            )
             
         );
     }

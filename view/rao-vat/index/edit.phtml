@@ -143,8 +143,8 @@
 <div class="form-group"> 	
 	<?php $hinhAnh=$bangTin->get('hinhAnhs')->get('hinhAnhs');?>
 	<?php $hinhAnh->setAttribute('class','form-control');?> 		
-	<?php echo $this->formElement($hinhAnh);?> 
-	<?php  echo 'Max file size post: '.ini_get('post_max_size'); ?>
+	<?php echo $this->formRow($hinhAnh);?> 
+	<?php  //echo 'Max file size post: '.ini_get('post_max_size'); ?>
 </div>
 <?php 
 	$submit=$form->get('submit'); 

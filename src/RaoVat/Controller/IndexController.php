@@ -12,6 +12,7 @@
  use RaoVat\Entity\HinhAnh;
  use DateTime;
  use DateTimeZone;
+ use Zend\Validator\File\Size;
 
 
  use RaoVat\Form\UpdateBangTinForm;
@@ -62,6 +63,18 @@
     $loaiTins = $entityManager->getRepository('RaoVat\Entity\LoaiTin')->findAll();
 
     $request = $this->getRequest();
+    $length=(int)$request->getServer()['CONTENT_LENGTH'];
+    if($length>104857600)
+    {
+      return array(
+        'form' => $form, 
+        'danhMucs'=>$danhMucs,
+        'khuVucs'=>$khuVucs, 
+        'mucDoVips'=> $mucDoVips,
+        'loaiTins'=>$loaiTins,
+      );
+    }
+    
     if ($request->isPost())
     { 
       // Make certain to merge the files info!
@@ -69,7 +82,6 @@
           $request->getPost()->toArray(),
           $request->getFiles()->toArray()
       );
-
       $post['bang-tin']['ngayDang']=date("Y-m-d", strtotime($post['bang-tin']['ngayDang']));
       $post['bang-tin']['ngayKetThuc']=date("Y-m-d", strtotime($post['bang-tin']['ngayKetThuc']));
       $currentDate = new DateTime(null, new DateTimeZone('Asia/Ho_Chi_Minh'));
@@ -129,6 +141,10 @@
         }
         return $this->redirect()->toRoute('rao_vat');
       }
+      else
+      {
+        var_dump($form->getMessages());
+      }
     }
 
     return array(
@@ -163,7 +179,7 @@
     
      $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
      $queryBuilder = $repository->createQueryBuilder('hA');
-     $queryBuilder->add('where','hA.idTin='.$bangTin->getIdTin());
+     $queryBuilder->add('where','hA.idTin='.$bangTin->getIdTin().' order by hA.main DESC');
      $query = $queryBuilder->getQuery();
      $hinhAnhs = $query->execute();
 
@@ -177,6 +193,20 @@
 
      $loaiTins = $entityManager->getRepository('RaoVat\Entity\LoaiTin')->findAll();
      $request = $this->getRequest();
+
+     $length=(int)$request->getServer()['CONTENT_LENGTH'];
+      if($length>104857600)
+      {
+        return array(
+          'form' => $form,
+          'id'=>$id, 
+          'danhMucs'=>$danhMucs,
+          'khuVucs'=>$khuVucs, 
+          'mucDoVips'=> $mucDoVips,
+          'loaiTins'=>$loaiTins,    
+          'hinhAnhs'=>$hinhAnhs,
+        );
+      }
      if ($this->request->isPost()) {
           $post = array_merge_recursive(
               $request->getPost()->toArray(),
@@ -185,6 +215,7 @@
 
          $form->setData($this->request->getPost());
          if ($form->isValid()) {
+         
            $entityManager->flush();
            if($post['bang-tin']['hinhAnhs']['hinhAnhs'][0]['error']==0)
            {
@@ -222,13 +253,13 @@
          }
          else
          {
-           die(var_dump($form->getMessages()));
+           var_dump($form->getMessages());
          }
       }
 
      $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
      $queryBuilder = $repository->createQueryBuilder('hA');
-     $queryBuilder->add('where','hA.idTin='.$bangTin->getIdTin());
+     $queryBuilder->add('where','hA.idTin='.$bangTin->getIdTin().' order by hA.main DESC');
      $query = $queryBuilder->getQuery();
      $hinhAnhs = $query->execute(); 
 
