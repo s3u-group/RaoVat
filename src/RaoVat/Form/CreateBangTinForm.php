@@ -6,13 +6,17 @@ use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\Form\Form;
 use RaoVat\Form\BangTinFieldset;
 
+use Zend\InputFilter\InputFilterProviderInterface;
+use Zend\Form\Element;
+use Zend\InputFilter\InputFilter;
+
 
 class CreateBangTinForm extends Form
 {
     public function __construct(ObjectManager $objectManager)
     {
         parent::__construct('create-bang-tin');
-
+        
         // The form will hydrate an object of type "BlogPost"
         $this->setHydrator(new DoctrineHydrator($objectManager));
 
@@ -33,8 +37,7 @@ class CreateBangTinForm extends Form
          ));    
 
         // Optionally set your validation group here
-        
-        
     }
+        
 }
 ?>

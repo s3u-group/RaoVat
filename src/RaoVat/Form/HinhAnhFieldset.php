@@ -6,6 +6,8 @@ use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\Form\Element;
+use Zend\Form\Form;
+use Zend\InputFilter\InputFilter;
 
 class HinhAnhFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -15,6 +17,8 @@ class HinhAnhFieldset extends Fieldset implements InputFilterProviderInterface
 
         $this->setHydrator(new DoctrineHydrator($objectManager))
              ->setObject(new HinhAnh());
+        
+        
 
          $this->add(array(
              'name' => 'idHinhAnh',
@@ -27,16 +31,32 @@ class HinhAnhFieldset extends Fieldset implements InputFilterProviderInterface
        
          // File Input
         $image = new Element\File('hinhAnhs');
-        $image->setAttribute('id', 'hinhAnhs')
+        $image->setAttribute('id', 'hinhAnhs')  
+        //      ->setAttribute('options',array(10,15))             
+              ->setAttribute('required',true)
+              
               ->setAttribute('multiple', true);   // That's it
-        $this->add($image);       
+        $this->add($image);
+
+
     }
+    
 
     public function getInputFilterSpecification()
     {
         return array(
-          
+            'validators' => array(
+                'hinhAnhs' => array(
+                    'type' => '\Zend\Validator\File\Size',
+                    'options' => array(
+                        'max' => '1000MB'
+                    )
+                )
+            )
+            
         );
     }
+
+    
    
 }

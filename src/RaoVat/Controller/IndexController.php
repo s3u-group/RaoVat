@@ -69,6 +69,7 @@
           $request->getPost()->toArray(),
           $request->getFiles()->toArray()
       );
+
       $post['bang-tin']['ngayDang']=date("Y-m-d", strtotime($post['bang-tin']['ngayDang']));
       $post['bang-tin']['ngayKetThuc']=date("Y-m-d", strtotime($post['bang-tin']['ngayKetThuc']));
       $currentDate = new DateTime(null, new DateTimeZone('Asia/Ho_Chi_Minh'));
