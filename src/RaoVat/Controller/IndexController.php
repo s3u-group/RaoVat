@@ -11,6 +11,7 @@
  use RaoVat\Entity\LoaiTin;
  use RaoVat\Entity\HinhAnh;
  use DateTime;
+ use DateTimeZone;
 
 
  use RaoVat\Form\UpdateBangTinForm;
@@ -70,15 +71,20 @@
       );
       $post['bang-tin']['ngayDang']=date("Y-m-d", strtotime($post['bang-tin']['ngayDang']));
       $post['bang-tin']['ngayKetThuc']=date("Y-m-d", strtotime($post['bang-tin']['ngayKetThuc']));
+      $currentDate = new DateTime(null, new DateTimeZone('Asia/Ho_Chi_Minh'));
+      $ngayHienTai=new DateTime($currentDate->format('Y-m-d')); 
+      //$ngayHienTai=$currentDate->format('Y-m-d');      
       $form->setData($post);
       
-      if ($form->isValid()) {     
-      //kiểm tra nếu có đăng nhập   
+      if ($form->isValid()) { 
         if ($this->zfcUserAuthentication()->hasIdentity()) {
           //get the user_id of the user
           $idUser=$this->zfcUserAuthentication()->getIdentity()->getId();
-        }        
+        }  
+        $bangTin->setNgayTao($ngayHienTai);
+        $bangTin->setNgayCapNhat($ngayHienTai);       
         $bangTin->setIdUser($idUser);
+
         $entityManager->persist($bangTin);
         $entityManager->flush();
         $repository = $entityManager->getRepository('RaoVat\Entity\BangTin');
@@ -87,14 +93,24 @@
         $query = $queryBuilder->getQuery(); 
         $bT = $query->execute();  // lấy bảng tin
         $idTin=$bT[0];
+         
+        $y=$currentDate->format('Y');
+        $m=$currentDate->format('m');
+        $d=$currentDate->format('d');
+        $pathYMD="./public/img/".$y.'/'.$m.'/'.$d.'/';
+
+        if (!file_exists($pathYMD)) {            
+            mkdir($pathYMD, 0700, true);
+        }
+
         if($post['bang-tin']['hinhAnhs']['hinhAnhs'][0]['error']==0)
         {
           $coAnhDaiDien=0;// khi thêm thì mặc định ảnh số một sẽ là ảnh đại diện. 
           foreach ($post['bang-tin']['hinhAnhs']['hinhAnhs'] as $p) {
              $uniqueToken=md5(uniqid(mt_rand(),true));
              $newName=$uniqueToken.'_'.$p['name'];
-             $arrayImage[]=$newName;
-             $filter = new \Zend\Filter\File\Rename("./public/img/".$newName);
+             //$arrayImage[]=$newName;
+             $filter = new \Zend\Filter\File\Rename($pathYMD.$newName);
              $filter->filter($p);
 
              $hinhAnh=new HinhAnh();       
@@ -172,6 +188,7 @@
            if($post['bang-tin']['hinhAnhs']['hinhAnhs'][0]['error']==0)
            {
              $coAnhDaiDien=0;
+             $yMD=$bangTin->getNgayTao()->format('Y/m/d');
 
              $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
              $queryBuilder = $repository->createQueryBuilder('hA');
@@ -180,11 +197,11 @@
              $anhDaiDien = $query->execute();
              foreach ($post['bang-tin']['hinhAnhs']['hinhAnhs'] as $p) 
              {
-
+               
                $uniqueToken=md5(uniqid(mt_rand(),true));
                $newName=$uniqueToken.'_'.$p['name'];
-               $arrayImage[]=$newName;
-               $filter = new \Zend\Filter\File\Rename("./public/img/".$newName);
+               //$arrayImage[]=$newName;
+               $filter = new \Zend\Filter\File\Rename("./public/img/".$yMD.'/'.$newName);
                $filter->filter($p);
       
                $hinhAnh=new HinhAnh();       
@@ -293,8 +310,9 @@
      if($hinhAnhs)
      {
        foreach ($hinhAnhs as $hinhAnh) {
+         $yMD=$hinhAnh->getIdTin()->getNgayTao()->format('Y/m/d');
          // mọi người chỉnh lại đường dẫn tới bức hình lưu trong máy nhé!
-         $mask =__ROOT_PATH__.'/public/img/'.$hinhAnh->getViTri();
+         $mask =__ROOT_PATH__.'/public/img/'.$yMD.'/'.$hinhAnh->getViTri();
          array_map( "unlink", glob( $mask ) );
          
          $entityManager->remove($hinhAnh);
@@ -330,7 +348,9 @@
 
      // KHAI BÁO ROOT_PATH TRONG FILE INDEX.PHP TRONG THƯ MỤC PUBLIC (ZEND/PUCBLIC/INDEX) NHƯ SAU:
      // define('ROOT_PATH', dirname(__DIR__));
-     $mask =__ROOT_PATH__.'/public/img/'.$hinhAnh->getViTri();
+
+     $yMD=$hinhAnh->getIdTin()->getNgayTao()->format('Y/m/d');
+     $mask =__ROOT_PATH__.'/public/img/'.$yMD.'/'.$hinhAnh->getViTri();
      array_map( "unlink", glob( $mask ) );   
      $entityManager->remove($hinhAnh);
      $entityManager->flush();  

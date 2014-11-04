@@ -42,6 +42,16 @@
 	private $ngayKetThuc;
 
 	/**
+	* @ORM\Column(name="ngay_tao", type="date")
+	*/
+	private $ngayTao;
+
+	/**
+	* @ORM\Column(name="ngay_cap_nhat", type="date")
+	*/
+	private $ngayCapNhat;
+
+	/**
 	* @ORM\Column(name="id_user")
 	* @ORM\ManyToOne(targetEntity="DanhMuc\Entity\SystemUser",cascade={"persist"})
 	*/
@@ -188,6 +198,26 @@
 	public function getIdLoaiTin()
 	{
 		return $this->idLoaiTin;
+	}
+
+	public function setNgayTao($ngayTao)
+	{
+		$this->ngayTao=$ngayTao;
+	}
+
+	public function getNgayTao()
+	{
+		return $this->ngayTao;
+	}
+
+	public function setNgayCapNhat($ngayCapNhat)
+	{
+		$this->ngayCapNhat=$ngayCapNhat;
+	}
+
+	public function getNgayCapNhat()
+	{
+		return $this->ngayCapNhat;
 	}
  }
  ?>

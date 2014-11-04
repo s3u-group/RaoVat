@@ -70,6 +70,8 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
              'attributes'=>array('required'=>'required'),
          ));
 
+          
+
 
           $this->add(array(
              'name' => 'idDanhMuc',
