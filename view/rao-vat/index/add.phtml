@@ -71,7 +71,15 @@
  		<?php $mucDoVip->setLabel('Mức độ vip'); ?>
  		<?php $mucDoVip->setAttribute('class','form-control');?>
  		<label><?php echo $mucDoVip->getLabel(); ?></label>
- 		<?php $mucDoVip->setValueOptions($this->makeArrayOptionMucDoVip($mucDoVips));?> 	 	
+ 		<?php
+		if ($this->zfcUserIdentity()) {
+		    $mucDoVip->setValueOptions($this->makeArrayOptionMucDoVip($mucDoVips));
+		} 
+		else {
+			$array=array(2=>'Thường');
+			$mucDoVip->setValueOptions($array);
+		}  
+		?>
  		<?php echo $this->formElement($mucDoVip);?> 
 </div>
 
