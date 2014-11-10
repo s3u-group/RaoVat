@@ -46,10 +46,10 @@
 
  	public function addAction()
  	{
-    if(!$this->zfcUserAuthentication()->hasIdentity())
+   /* if(!$this->zfcUserAuthentication()->hasIdentity())
     {
       return $this->redirect()->toRoute('zfcuser');
-    }
+    }*/
 
     $entityManager=$this->getEntityManager();
     $bangTin=new BangTin();
@@ -98,6 +98,10 @@
           //get the user_id of the user
           $idUser=$this->zfcUserAuthentication()->getIdentity()->getId();
         }  
+        else
+        {
+          $idUser=0;
+        }
         $bangTin->setNgayTao($ngayHienTai);
         $bangTin->setNgayCapNhat($ngayHienTai);       
         $bangTin->setIdUser($idUser);
