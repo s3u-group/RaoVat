@@ -30,6 +30,10 @@
      }
      return $this->entityManager;
   }
+  public function xemTinAction()
+  {
+    $this->layout('layout/giaodien');      
+  }
   
  	public function indexAction()
  	{
