@@ -37,17 +37,17 @@ if ($this->zfcUserIdentity()) {
      <th>Giá(vnd)</th>
      <th>&nbsp;</th>
  </tr> 
-
+    
  <?php foreach ($bangTins as $bangTin):?>
- <tr>  
+ <tr>     
      <td><?php echo $this->escapeHtml($bangTin->getTieuDe());?></td>
      <td><?php echo $this->escapeHtml($bangTin->getNoiDung());?></td>
      <td><?php echo $this->escapeHtml(date_format($bangTin->getNgayDang(),'d/m/Y'));?></td>
-     <td><?php echo $this->escapeHtml(date_format($bangTin->getNgayKetThuc(),'d/m/Y'));?></td>     
-     <td><?php echo $this->escapeHtml($bangTin->getIdDanhMuc());?></td>
-     <td><?php echo $this->escapeHtml($bangTin->getIdKhuVuc());?></td>
-     <td><?php echo $this->escapeHtml($bangTin->getIdMucDoVip());?></td>
-	   <td><?php echo $this->escapeHtml($bangTin->getIdLoaiTin());?></td>
+     <td><?php echo $this->escapeHtml(date_format($bangTin->getNgayKetThuc(),'d/m/Y'));?></td>
+     <td><?php echo $this->escapeHtml($bangTin->getIdDanhMuc()->getTermId()->getName());?></td>
+     <td><?php echo $this->escapeHtml($bangTin->getIdKhuVuc()->getTermId()->getName());?></td>
+     <td><?php echo $this->escapeHtml($bangTin->getIdMucDoVip()->getTenMucDoVip());?></td>
+	   <td><?php echo $this->escapeHtml($bangTin->getIdLoaiTin()->getTenLoaiTin());?></td>
      <td><?php echo $this->escapeHtml($bangTin->getGia());?></td>
      <td>
          <a href="<?php echo $this->url('rao_vat/crud',
