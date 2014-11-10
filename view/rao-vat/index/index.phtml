@@ -34,6 +34,7 @@ if ($this->zfcUserIdentity()) {
      <th>Khu vực</th>
      <th>Mức độ</th>
      <th>Loại</th>
+     <th>Giá(vnd)</th>
      <th>&nbsp;</th>
  </tr> 
 
@@ -46,7 +47,8 @@ if ($this->zfcUserIdentity()) {
      <td><?php echo $this->escapeHtml($bangTin->getIdDanhMuc());?></td>
      <td><?php echo $this->escapeHtml($bangTin->getIdKhuVuc());?></td>
      <td><?php echo $this->escapeHtml($bangTin->getIdMucDoVip());?></td>
-	 <td><?php echo $this->escapeHtml($bangTin->getIdLoaiTin());?></td>     
+	   <td><?php echo $this->escapeHtml($bangTin->getIdLoaiTin());?></td>
+     <td><?php echo $this->escapeHtml($bangTin->getGia());?></td>
      <td>
          <a href="<?php echo $this->url('rao_vat/crud',
              array('action'=>'edit', 'id' => $bangTin->getIdTin()));?>">Sửa</a>         

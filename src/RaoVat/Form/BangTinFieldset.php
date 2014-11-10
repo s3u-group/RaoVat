@@ -117,6 +117,18 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
              ),
          ));
 
+         $this->add(array(
+             'name' => 'gia',
+             'type'=>'Number',
+             'options' => array(
+                 'label' => 'Giá',                 
+             ),
+             'attributes'=>array(
+                'required'=>'required',
+                'min'=>1000,                
+             ),
+         ));
+
         
 
          $hinhAnhFieldset = new HinhAnhFieldset($objectManager);

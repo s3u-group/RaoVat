@@ -31,6 +31,12 @@
 	<label><?php echo $noiDung->getLabel(); ?></label>
 	<?php echo $this->formElement($noiDung); ?> 
 </div>
+<div class="form-group"> 	
+ 		<?php $gia=$bangTin->get('gia');?>
+ 		<?php $gia->setAttribute('class','form-control');?>
+ 		<label><?php echo $gia->getLabel(); ?></label>
+ 		<?php echo $this->formElement($gia);?> 
+</div>
 
 <div class="form-group"> 	
 	<?php $ngayDang=$bangTin->get('ngayDang'); ?>

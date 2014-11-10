@@ -86,6 +86,11 @@
 	*/
 	private $hinhAnhs;
 
+	/**
+	* @ORM\Column(type="float")
+	*/
+	private $gia;
+
 	public function __construct()
 	{
 		$this->hinhAnhs=new ArrayCollection();
@@ -218,6 +223,14 @@
 	public function getNgayCapNhat()
 	{
 		return $this->ngayCapNhat;
+	}
+	public function setGia($gia)
+	{
+		$this->gia=$gia;
+	}
+	public function getGia()
+	{
+		return $this->gia;
 	}
  }
  ?>
