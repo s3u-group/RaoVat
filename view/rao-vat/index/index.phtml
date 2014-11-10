@@ -38,12 +38,12 @@ if ($this->zfcUserIdentity()) {
      <th>&nbsp;</th>
  </tr> 
 
- <?php /*die(var_dump($bangTins));*/ foreach ($bangTins as $bangTin):?>
- <tr>     
+ <?php foreach ($bangTins as $bangTin):?>
+ <tr>  
      <td><?php echo $this->escapeHtml($bangTin->getTieuDe());?></td>
      <td><?php echo $this->escapeHtml($bangTin->getNoiDung());?></td>
      <td><?php echo $this->escapeHtml(date_format($bangTin->getNgayDang(),'d/m/Y'));?></td>
-     <td><?php echo $this->escapeHtml(date_format($bangTin->getNgayKetThuc(),'d/m/Y'));?></td>
+     <td><?php echo $this->escapeHtml(date_format($bangTin->getNgayKetThuc(),'d/m/Y'));?></td>     
      <td><?php echo $this->escapeHtml($bangTin->getIdDanhMuc());?></td>
      <td><?php echo $this->escapeHtml($bangTin->getIdKhuVuc());?></td>
      <td><?php echo $this->escapeHtml($bangTin->getIdMucDoVip());?></td>
