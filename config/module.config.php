@@ -36,8 +36,11 @@ return array(
 
 	'view_manager' => array(
 		'template_path_stack' => array(
-			'rao_vat' => __DIR__ . '/../view'
-		)
+			'rao_vat' => __DIR__ . '/../view',            
+		),
+        'template_map'=>array(
+            'layout/giaodien'        => __DIR__ . '/../view/layout/giao-dien.phtml',
+        ),
 	),    
 
 	'doctrine' => array(
