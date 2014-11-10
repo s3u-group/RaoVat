@@ -53,31 +53,32 @@
 
 	/**
 	* @ORM\Column(name="id_user")
-	* @ORM\ManyToOne(targetEntity="DanhMuc\Entity\SystemUser",cascade={"persist"})
+	* @ORM\ManyToOne(targetEntity="DanhMuc\Entity\SystemUser")
+    * @ORM\JoinColumn(name="id_user", referencedColumnName="user_id")
 	*/
 	private $idUser;
 
 	/**
-	* @ORM\Column(name="id_danh_muc")
-	* @ORM\ManyToOne(targetEntity="S3UTaxonomy\Entity\ZfTermTaxonomy",cascade={"persist"})
+	* @ORM\ManyToOne(targetEntity="S3UTaxonomy\Entity\ZfTermTaxonomy")
+	* @ORM\JoinColumn(name="id_danh_muc", referencedColumnName="term_taxonomy_id")
 	*/
 	private $idDanhMuc;
 
 	/**
-	* @ORM\Column(name="id_khu_vuc")
-	* @ORM\ManyToOne(targetEntity="S3UTaxonomy\Entity\ZfTermTaxonomy",cascade={"persist"})
+	* @ORM\ManyToOne(targetEntity="S3UTaxonomy\Entity\ZfTermTaxonomy")
+	* @ORM\JoinColumn(name="id_khu_vuc", referencedColumnName="term_taxonomy_id")
 	*/
 	private $idKhuVuc;
 
 	/**
-	* @ORM\Column(name="id_muc_do_vip")
-	* @ORM\ManyToOne(targetEntity="RaoVat\Entity\MucDoVip",cascade={"persist"})
+	* @ORM\ManyToOne(targetEntity="RaoVat\Entity\MucDoVip")
+	* @ORM\JoinColumn(name="id_muc_do_vip", referencedColumnName="id_muc_do_vip")
 	*/
 	private $idMucDoVip;
 
 	/**
-	* @ORM\Column(name="id_loai_tin")
-	* @ORM\ManyToOne(targetEntity="RaoVat\Entity\LoaiTin",cascade={"persist"})
+	* @ORM\ManyToOne(targetEntity="RaoVat\Entity\LoaiTin")
+	* @ORM\JoinColumn(name="id_loai_tin", referencedColumnName="id_loai_tin")
 	*/
 	private $idLoaiTin;
 

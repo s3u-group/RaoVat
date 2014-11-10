@@ -18,7 +18,7 @@ class HinhAnh
 
 	/**
 	* @ORM\JoinColumn(name="id_tin")
-	* @ORM\ManyToOne(targetEntity="RaoVat\Entity\BangTin", inversedBy="HinhAnh")
+	* @ORM\ManyToOne(targetEntity="RaoVat\Entity\BangTin", inversedBy="hinhAnhs")
 	* @ORM\JoinColumn(name="id_tin", referencedColumnName="id_tin")
 	*/
 	private $idTin;
