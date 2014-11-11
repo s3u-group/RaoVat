@@ -7,7 +7,7 @@
  <h1>
  	<?php echo $this->escapeHtml($title); ?>
  </h1>
-<a href="<?php echo $this->url('rao_vat'); ?>">Quay lại</a>
+<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'index')); ?>">Quay lại</a>
 <?php
  $form->setAttribute('action', $this->url('rao_vat/crud',array('action' => 'edit','id'=> $this->id)));
  $form->setAttribute('role','form');
@@ -87,13 +87,18 @@
 <table border="1">
 	
 <?php $i=0;
+
 	foreach($hinhAnhs as $hinhAnh)
 	{?>
 		<?php $i+=1;
 		$yMD=$hinhAnh->getIdTin()->getNgayTao()->format('Y/m/d');
-		if($i==1)
-		{?>	
-			<tr>
+		if($i==1||$i==2)
+		{
+			if($i==1)
+			{
+				echo '<tr>';
+			}
+		?>	
 				<td>
 					<table>
 						<tr>
@@ -103,8 +108,10 @@
 						</tr>
 						<tr>
 							<td align="center">
+							<?php if(count($hinhAnhs)>1){ ?>
 							<?php echo '<a href="'.$this->url('rao_vat/crud',
 	             array('action'=>'deleteImage','id'=>$hinhAnh->getIdHinhAnh())).'">Xóa</a>'; ?>
+	             			<?php } ?>
 							</td>
 							
 							<td align="center">
@@ -116,33 +123,14 @@
 						</tr>
 					</table>
 				</td>
-		<?php		
+		<?php	
+			if($i==2)
+			{
+				echo "</tr>";
+				$i=0;	
+			}		
 		}
-		if($i==2)
-		{?>
-				<td>
-					<table>
-						<tr>
-							<?php echo '<td colspan="2"><img src="../../img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="200px" height="200px"/>';?>
-							</td>
-						</tr>
-						<tr>
-							<td align="center">
-							<?php echo '<a href="'.$this->url('rao_vat/crud',
-	             array('action'=>'deleteImage','id'=>$hinhAnh->getIdHinhAnh())).'">Xóa</a>'; ?>
-							</td>							
-							<td align="center">
-							<?php if($hinhAnh->getMain()==0){ ?>
-							<?php echo '<a href="'.$this->url('rao_vat/crud',
-	             array('action'=>'editAnhDaiDien','id'=>$hinhAnh->getIdHinhAnh())).'">Ảnh đại diện</a>'; ?>
-	             			<?php } ?>
-							</td>
-						</tr>
-					</table>
-				</td>
-			<?php echo "</tr>";
-			$i=0;	
-		}				
+
 	}  
 ?>
 </table>
