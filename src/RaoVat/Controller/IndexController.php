@@ -406,6 +406,18 @@
         return $this->redirect()->toRoute('rao_vat');
      }
 
+       $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
+       $queryBuilder = $repository->createQueryBuilder('hA');
+       $queryBuilder->add('where','hA.idTin='.$idTin->getIdTin()->getIdTin());
+       $query = $queryBuilder->getQuery();
+       $kiemTraHinhAnhs = $query->execute();
+       //die(var_dump(count($kiemTraHinhAnhs)));
+       if(count($kiemTraHinhAnhs)<=1)
+       {
+         return $this->redirect()->toRoute('rao_vat/crud',array('action'=>'edit','id'=>$idTin->getIdTin()->getIdTin()));
+       }
+
+
      // KHAI BÁO ROOT_PATH TRONG FILE INDEX.PHP TRONG THƯ MỤC PUBLIC (ZEND/PUCBLIC/INDEX) NHƯ SAU:
      // define('ROOT_PATH', dirname(__DIR__));
 

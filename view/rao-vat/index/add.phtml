@@ -7,7 +7,7 @@
  <h1>
  	<?php echo $this->escapeHtml($title); ?>
  </h1>
-<a href="<?php echo $this->url('rao_vat'); ?>">Quay lại</a>
+<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'index')); ?>">Quay lại</a>
 <?php
  $form->setAttribute('action', $this->url('rao_vat/crud', array('action' => 'add')));
  $form->setAttribute('role','form');
@@ -101,7 +101,8 @@
 
 <div class="form-group"> 	
  		<?php $hinhAnh=$bangTin->get('hinhAnhs')->get('hinhAnhs');?>
- 		<?php $hinhAnh->setAttribute('class','form-control');?> 		
+ 		<?php $hinhAnh->setAttribute('class','form-control');?> 	
+ 		<?php $hinhAnh->setAttribute('required','true');?> 		
  		<?php echo $this->formElement($hinhAnh);?> 
 </div>
 <?php 
