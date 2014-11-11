@@ -96,11 +96,11 @@
       if ($form->isValid()) { 
         if ($this->zfcUserAuthentication()->hasIdentity()) {
           //get the user_id of the user
-          $idUser=$this->zfcUserAuthentication()->getIdentity()->getId();
+          $idUser=$this->zfcUserAuthentication()->getIdentity();//->getId();
         }  
         else
         {
-          $idUser=0;
+          $idUser = $entityManager->getRepository('DanhMuc\Entity\SystemUser')->find(0);
         }
         $bangTin->setNgayTao($ngayHienTai);
         $bangTin->setNgayCapNhat($ngayHienTai);       

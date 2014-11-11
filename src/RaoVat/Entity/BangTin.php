@@ -52,8 +52,7 @@
 	private $ngayCapNhat;
 
 	/**
-	* @ORM\Column(name="id_user")
-	* @ORM\ManyToOne(targetEntity="DanhMuc\Entity\SystemUser")
+	* @ORM\ManyToOne(targetEntity="DanhMuc\Entity\SystemUser", cascade={"persist"})
     * @ORM\JoinColumn(name="id_user", referencedColumnName="user_id")
 	*/
 	private $idUser;
