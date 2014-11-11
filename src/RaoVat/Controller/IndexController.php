@@ -32,7 +32,12 @@
   }
   public function xemTinAction()
   {
+
+    $entityManager=$this->getEntityManager();
     $this->layout('layout/giaodien');      
+    $bangTins=$entityManager->getRepository('RaoVat\Entity\BangTin')->findAll();
+    return array('bangTins'=>$bangTins);
+
   }
   
  	public function indexAction()
