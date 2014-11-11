@@ -14,7 +14,7 @@ return array(
                     'defaults' => array(
                        '__NAMESPACE__'=>'RaoVat\Controller',
                         'controller' => 'Index',
-                        'action'     => 'index',
+                        'action'     => 'xemTin',
                     ),
                 ),
                 'may_terminate' => true,
