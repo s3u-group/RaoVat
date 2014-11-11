@@ -35,8 +35,7 @@
     $this->layout('layout/giaodien'); 
     $entityManager=$this->getEntityManager();
     $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin');
-    $bangTins = $query->getResult(); // array of CmsArticle objects
-    
+    $bangTins = $query->getResult(); // array of CmsArticle objects    
     return array('bangTins'=>$bangTins);
 
    /* $bangTins=$entityManager->getRepository('RaoVat\Entity\BangTin')->findAll();
