@@ -32,10 +32,12 @@
   }
   public function xemTinAction()
   {
-
+    $this->layout('layout/giaodien'); 
     $entityManager=$this->getEntityManager();
-    $this->layout('layout/giaodien');      
-    $bangTins=$entityManager->getRepository('RaoVat\Entity\BangTin')->findAll();
+    $query = $entityManager->createQuery('SELECT bT, hA FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin');
+    $bangTins = $query->getResult(); // array of CmsArticle objects
+    var_dump($bangTins[0]->getIdTin());
+    die(var_dump($bangTins[0]->getHinhAnhs()[0]->getViTri()));
     return array('bangTins'=>$bangTins);
 
   }

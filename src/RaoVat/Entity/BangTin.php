@@ -112,7 +112,7 @@
 
 	public function getHinhAnhs()
 	{
-		return $this->hinhAnhs;
+		return $this->hinhAnhs->toArray();
 	}
 
 	public function setIdTin($idTin)
