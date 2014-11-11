@@ -34,11 +34,25 @@
   {
     $this->layout('layout/giaodien'); 
     $entityManager=$this->getEntityManager();
-    $query = $entityManager->createQuery('SELECT bT, hA FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin');
+    $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin');
     $bangTins = $query->getResult(); // array of CmsArticle objects
-    var_dump($bangTins[0]->getIdTin());
-    die(var_dump($bangTins[0]->getHinhAnhs()[0]->getViTri()));
+    
     return array('bangTins'=>$bangTins);
+
+   /* $bangTins=$entityManager->getRepository('RaoVat\Entity\BangTin')->findAll();
+    $i=-1;
+    foreach ($bangTins as $bangTin) {
+       $i++;
+       $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
+       $queryBuilder = $repository->createQueryBuilder('hA');
+       $queryBuilder->add('where','hA.idTin='.$bangTin->getIdTin().' order by hA.main DESC');
+       $query = $queryBuilder->getQuery();
+       $hinhAnhs = $query->execute();
+       $bangTins[$i]->addHinhAnhs($hinhAnhs);
+      
+    }
+
+    die(var_dump($bangTins));*/
 
   }
   
