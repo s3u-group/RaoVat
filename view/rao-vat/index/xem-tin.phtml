@@ -1,9 +1,12 @@
 <?php //die(var_dump($bangTins[1]->getHinhAnhs()[0]->getViTri())); ?>
 <table border="0" align="center" width="100%" height="300px">	
 <?php $i=0;
+
 	foreach($bangTins as $bangTin)
 	{?>
-		<?php $i+=1;		
+
+		<?php $i+=1;
+				
 		if($i==1||$i==2)
 		{
 			if($i==1)
@@ -28,18 +31,32 @@
 									<?php
 										$yMD=$bangTin->getNgayTao()->format('Y/m/d');
 										//die(var_dump($yMD));
+										if(count($bangTin->getHinhAnhs())==0)
+										{
+											echo '<img src="'.$this->basePath().'/img/" width="50px" height="250px"/>';
+										}
 										foreach ($bangTin->getHinhAnhs() as $hinhAnh) {
 											if($hinhAnh->getMain()==1)
 											{
 												echo '<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="150px" height="200px"/>';
 											}
-											
+
 										}
 									?>
 									</td>	
 								</tr>
-								<tr>
-									<td height="50px">Ảnh nhỏ</td>	
+								<tr>								
+									<td height="50px">
+									<?php
+										foreach ($bangTin->getHinhAnhs() as $hinhAnh) {
+											if($hinhAnh->getMain()!=1)
+											{
+												echo '<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="50px" height="40px"/>';
+											}
+											
+										}
+										?>
+									</td>	
 								</tr>
 							</table>
 						</td>
@@ -64,12 +81,13 @@
 					</tr>
 				</table>
 			</td>
-		<?php
-		if($i==2)
-		{
-			echo '</tr>';
-			$i=0;
-		}		
+			<?php
+			if($i==2)
+			{
+				echo '</tr>';
+				$i=0;
+			}		
+		}
 	}  
 ?>
 </table>
