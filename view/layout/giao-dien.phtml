@@ -1,6 +1,12 @@
 <!DOCTYPE HTML>
 <!-- Website Template by freewebsitetemplates.com -->
 <html>
+<script type="text/javascript">
+	function tb()
+	{
+		alert("Đang xậy dựng");
+	}	
+</script>
 <head>
 	<meta charset="UTF-8">
 	<title>Rao vặt</title>
@@ -9,10 +15,74 @@
 </head>
 <body>
 	<div id="header">
+	<?php
+		$url = $this->url('rao_vat/crud', array(
+		     'action' => 'login'
+		 ));
+	?>	 
+		<form method="post" action="<?php echo $url; ?>">	
+			<table border="0" align="right" style="margin-top:50px;margin-right:-140px">
+			<?php
+				if ($this->zfcUserIdentity()) {?>
+				<tr>
+					<td>
+						<?php echo "Chào: ".$this->zfcUserIdentity()->getUsername();?></td>
+					<td>
+						<!-- <a href="<?php echo $this->basePath();?>/user/logout">Thoát</a> -->
+						<a href="<?php echo $this->url('rao_vat/crud',
+             array('action'=>'logout'));?>">Thoát</a>
+					</td>
+				</tr>
+			<?php }?>
+				<tr>
+					<td>
+						<a href="<?php echo $this->basePath();?>/rao-vat/add" style="text-decoration: none;" title="Đăng tin miễn phí. Đăng nhập để đăng tin Vip"><input type="button" name="btDangTin" value="Đăng tin miễn phí"></a>
+						</br>&nbsp;
+					</td>
+			<?php 
+				if (!$this->zfcUserIdentity()){?>
+					<td style="text-align:right">
+						<input type="text" name="identity" placeholder="Tên đăng nhập">
+						</br>&nbsp;
+					</td>
+					<td>
+						<input type="password" name="credential" placeholder="Mật khẩu"><br style="margin-bottom:5px;">
+						<a href="<?php echo $this->basePath();?>/user/register" title="Đăng ký để đăng tin Vip">Đăng ký</a>
+						<a href="#" onclick="return tb();">Quên mật khẩu</a>
+					</td>
+					<td>
+						<input type="submit" name="btDangTin" value="Đăng Nhập">
+						</br>&nbsp;
+					</td>
+			<?php }?>					
+				</tr>					
+			</table>
+		</form>
 		<div class="section">
 			<div class="logo">
 				<a href="index.html">Raovat.vn</a>
-			</div>
+			</div><?php echo ""?>
+				<!-- <table border="0" style="margin-top:50px; margin-left:420px">
+					<tr>
+						<td>
+							<input type="button" name="btDangTin" value="Đăng tin miễn phí">
+							</br>&nbsp;
+						</td>
+						<td style="text-align:right">
+							<input type="text" name="txtUsername" placeholder="Tên đăng nhập">
+							</br>&nbsp;
+						</td>
+						<td>
+							<input type="password" name="txtPassword" placeholder="Mật khẩu"></br>
+							<a href="">Đăng ký</a>
+							<a href="">Quên mật khẩu</a>
+						</td>
+						<td>
+							<input type="button" name="btDangTin" value="Đăng Nhập">
+							</br>&nbsp;
+						</td>
+					</tr>					
+				</table> -->
 			<!-- <ul>
 				<li class="selected">
 					<a href="index.html">home</a>
