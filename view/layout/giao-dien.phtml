@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	function tb()
 	{
-		alert("Đang xậy dựng");
+		alert("Đang xây dựng");
 	}	
 </script>
 <head>
@@ -59,8 +59,10 @@
 						</br>&nbsp;
 					</td>
 					<td>
-						<input type="password" name="credential" placeholder="Mật khẩu"><br style="margin-bottom:5px;">
-						<a href="<?php echo $this->basePath();?>/user/register" title="Đăng ký để đăng tin Vip">Đăng ký</a>
+						<input type="password" name="credential" placeholder="Mật khẩu"></br>
+						<a href="<?php echo $this->url('rao_vat/crud',
+             array('action'=>'register'));?>" title="Đăng ký để đăng tin Vip">Đăng ký</a>
+						<!-- <a href="<?php echo $this->basePath();?>/user/register" title="Đăng ký để đăng tin Vip">Đăng ký</a> -->
 						<a href="#" onclick="return tb();">Quên mật khẩu</a>
 					</td>
 					<td>

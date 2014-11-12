@@ -31,10 +31,6 @@
      }
      return $this->entityManager;
   }
-
-
-  
-
   public function loginAction()
   {    
     // Build the redirect URL using the route to which we want
@@ -52,33 +48,22 @@
     ));
   }
   public function logoutAction()
-  {    
-    // Build the redirect URL using the route to which we want
-    // the user returned.
+  {
     $redirect = $this->url()->fromRoute('rao_vat');
-
-    // Set the redirect URL in the request so that ZfcUser can
-    // pick it up. This is the key.
-    $this->getRequest()->getQuery()->set('redirect', $redirect);
-
-    // Use ZfcUser's login action rather than its authentication
-    // action.
+    $this->getRequest()->getQuery()->set('redirect', $redirect);    
     return $this->forward()->dispatch('zfcuser', array(
         'action' => 'logout'
     ));
   }
   public function registerAction()
-  {    
-    // Build the redirect URL using the route to which we want
-    // the user returned.
+  {
+/*    $this->layout('layout/giaodien');        
+    $register=new ViewModel();
+    $register->setTemplate('zfc-user/user/register.phtml');
+    return $register;*/
+    $this->layout('layout/giaodien');        
     $redirect = $this->url()->fromRoute('rao_vat');
-
-    // Set the redirect URL in the request so that ZfcUser can
-    // pick it up. This is the key.
     $this->getRequest()->getQuery()->set('redirect', $redirect);
-
-    // Use ZfcUser's login action rather than its authentication
-    // action.
     return $this->forward()->dispatch('zfcuser', array(
         'action' => 'register'
     ));
@@ -94,11 +79,9 @@
     return array('bangTins'=>$bangTins);
   }
   
-
   // id là id bảng tin
   public function xemChiTietTinAction()
   {    
-
      $id = (int) $this->params()->fromRoute('id', 0);
      if (!$id) {
          return $this->redirect()->toRoute('rao_vat', array(
@@ -171,9 +154,6 @@
     $bangTins = $query->getResult(); // array of CmsArticle objects    
     return array('bangTins'=>$bangTins);
   }
-
-  
-
 
  // id là id termTaxonomy
   public function  xemTinTheoDanhMucAction()
