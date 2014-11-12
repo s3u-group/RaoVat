@@ -12,115 +12,101 @@
 			}
 		?>	
 				<td width="500px;">
-					<table align="center" width="100%" height="100%" style="border:thin solid blue; background:white">	
+					<table align="center" width="100%" height="100%" style=" background:white">	
 
 						<tr>
-							<td colspan="2">
-								Tiêu đề: <a href="#" style="color:black;"><?php echo '<b>'.$this->escapeHtml($bangTin->getTieuDe());?></b></a>
+							<td >
+								Tiêu đề: 
+								
+									<b>
+										<?php echo $this->escapeHtml($bangTin->getTieuDe());?>
+									</b>
 								
 							</td>
 						</tr>
 						<tr>
-							<td rowspan="4" width="150px" height="200px">
-								<table align="center" width="100%" height="100%" border="1px" style="border-spacing:0px; border-padding:0px; border-left:none; border-top:none; border-right:none; border-bottom:none; margin-left:-4px; margin-bottom:-4px; border-color:blue; ">
+							<td >
+								Giá:<b style="color:red">
+										<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTinTheoGia', 'id' => $bangTin->getGia())); ?>" style="color:red;">
+											<?php echo $this->escapeHtml($bangTin->getGia());?>
+										</a>
+									</b> VNĐ. 
+								<br>
+								Ngày đăng: <a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTinTheoNgay', 'id' => $bangTin->getIdTin())); ?>">
+									<b style="color:blue;">
+										<?php echo $this->escapeHtml(date_format($bangTin->getNgayDang(),'d/m/Y'));?>
+									</b>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table width="100%" height="100%" align="center" style='background-color:#C0C0C0'>
 									<tr>
-										<td height="150px">
+										<td width="84%" height="100%" style='text-align:center'>
 										<?php
 											$yMD=$bangTin->getNgayTao()->format('Y/m/d');
-											//die(var_dump($yMD));
 											foreach ($bangTin->getHinhAnhs() as $hinhAnh) {
 												if($hinhAnh->getMain()==1)
 												{
-													echo '<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="150px" height="100%"/>';
+													echo '<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="300px" height="400px" align="center"/>';
 												}
 												
 											}
 										?>
-										</td>	
-									</tr>
-									<tr>
-										<td height="50px" style="border-top:none; background-color: #C0C0C0;">
+										</td>
 										<?php
-											if(count($bangTin->getHinhAnhs())>1)
-											{
-												$co=0;
-												foreach ($bangTin->getHinhAnhs() as $hinhAnh) {												
-													if($hinhAnh->getMain()!=1)
-													{
-														if(count($bangTin->getHinhAnhs())<=4)
+										if(count($bangTin->getHinhAnhs())>1)
+										{?>
+											<td width="75px">
+												<?php
+													$co=0;
+													foreach ($bangTin->getHinhAnhs() as $hinhAnh) {													
+														$co++;
+														if($co<=10)
 														{
-															$co++;
-															if($co<=3)
-															{
-																echo '&nbsp;&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
-															}	
-														}	
-														else										
-														{
-															$co++;
-															if($co<=2)
-															{
-																echo '&nbsp;&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
-															}
-															if($co==3)
-															{
-																echo '&nbsp;&nbsp;<a href="#" style="font-size:14px; color:black"><b>Next</b></a>';
-															}
+															echo '&nbsp;&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="60px" height=80px"/>';
+															echo '<br>';
 														}
-													}
-													
-												}
-											}
-											else
-											{
-												echo '&nbsp;&nbsp;<img src="'.$this->basePath().'/img/DefaultImage.jpg'.'" width="40px" height="50px"/>';
-											}
-
+														if($co==5)
+														{
+															echo '</td><td width="75px">';
+														}														
+													}											
+												?>
+											</td>
+											
+										<?php
+										}
 										?>
-										</td>	
 									</tr>
 								</table>
 							</td>
-							<td height="50px;">
-							Giá:<b style="color:red"><a href="#" style="color:red;"><?php echo $this->escapeHtml($bangTin->getGia());?></a></b> VNĐ <br> Ngày đăng: <a href="#"><b style="color:blue;"><?php echo $this->escapeHtml(date_format($bangTin->getNgayDang(),'d/m/Y'));?></b></a>
-							</td>
-						</tr>
+						</tr>						
 						<tr>						
 							<td>
-								<a href="">
-								<?php
-									echo '<b style="color:blue;">'.$bangTin->getIdLoaiTin()->getTenLoaiTin().':</b><br>';
-								?>
+								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTheoLoaiTin', 'id' => $bangTin->getIdLoaiTin()->getIdLoaiTin())); ?>">
+									<?php
+										echo '<b style="color:blue;">'.$bangTin->getIdLoaiTin()->getTenLoaiTin().':</b><br>';
+									?>
 								</a>
 								<?php 
-									$arrayNoiDung=explode(' ', $bangTin->getNoiDung());
-									if(count($arrayNoiDung)<=12)
-									{
-										echo $this->escapeHtml($bangTin->getNoiDung()).'...';
-									}
-									else
-									{
-										echo " ".$arrayNoiDung[0];
-										for($j=0; $j<12; $j++)
-										{
-											echo " ".$arrayNoiDung[$j];
-										}
-										echo '...';
-									}
-									
-								?>
-								<br>
-								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemChiTietTin', 'id' => $bangTin->getIdTin())); ?>">Xem chi tiết...</a>
+									echo $this->escapeHtml($bangTin->getNoiDung());
+								?>								
 							</td>
 						</tr>
 						<tr>						
 							<td height ="30px;" style="color:#C0C0C0;">Danh muc:
-								<?php echo $this->escapeHtml($bangTin->getIdDanhMuc()->getTermId()->getName());?>
+								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTinTheoDanhMuc', 'id' => $bangTin->getIdDanhMuc()->getTermTaxonomyId())); ?>" style="color:#C0C0C0;">
+									<?php echo $this->escapeHtml($bangTin->getIdDanhMuc()->getTermId()->getName());?>
+								</a>
 							</td>
 						</tr>
 						<tr>							
 							<td height ="30px;" style="color:#C0C0C0;">Khu vực:
-								<?php echo $this->escapeHtml($bangTin->getIdKhuVuc()->getTermId()->getName());?>
+								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTinTheoKhuVuc', 'id' => $bangTin->getIdKhuVuc()->getTermTaxonomyId())); ?>" style="color:#C0C0C0;">
+									<?php echo $this->escapeHtml($bangTin->getIdKhuVuc()->getTermId()->getName());?>
+								</a>
 							</td>
 						</tr>
 					</table>
@@ -128,7 +114,7 @@
 		<?php
 			if($i==2)
 			{
-				echo '</tr><tr><td height="20px"colspan="2" style="background-color:white"></td></tr>';
+				echo '</tr><tr><td height="20px" style="background-color:white"></td></tr>';
 				$i=0;
 			}		
 		}				

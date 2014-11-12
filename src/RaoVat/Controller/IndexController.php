@@ -30,6 +30,8 @@
      }
      return $this->entityManager;
   }
+
+  // xem tất cả các tin đây là action mặc định
   public function xemTinAction()
   {    
     $this->layout('layout/giaodien'); 
@@ -39,6 +41,8 @@
     return array('bangTins'=>$bangTins);
   }
   
+
+  // id là id bảng tin
   public function xemChiTietTinAction()
   {    
 
@@ -57,6 +61,7 @@
   }
 
 
+  // id là giá 
   public function  xemTinTheoGiaAction()
   {    
 
@@ -74,6 +79,8 @@
     return array('bangTins'=>$bangTins);
   }
 
+
+  // id là id loại tin
   public function  xemTheoLoaiTinAction()
   {    
 
@@ -91,6 +98,8 @@
     return array('bangTins'=>$bangTins);
   }
 
+
+  // id là id bảng tin
   public function  xemTinTheoNgayAction()
   {    
 
@@ -106,6 +115,43 @@
     $ngayDang=date_format($bangTin->getNgayDang(),'Y-m-d');
     //die(var_dump($ngayDang));
     $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin and bT.ngayDang=\''.$ngayDang.'\''.' ORDER BY bT.idMucDoVip');
+    $bangTins = $query->getResult(); // array of CmsArticle objects    
+    return array('bangTins'=>$bangTins);
+  }
+
+  
+
+
+ // id là id termTaxonomy
+  public function  xemTinTheoDanhMucAction()
+  {    
+
+     $id = (int) $this->params()->fromRoute('id', 0);
+     if (!$id) {
+         return $this->redirect()->toRoute('rao_vat', array(
+             'action' => 'xemTin'
+         ));
+     }  
+    $this->layout('layout/giaodien'); 
+    $entityManager=$this->getEntityManager();
+    $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin and bT.idDanhMuc=\''.$id.'\''.' ORDER BY bT.idMucDoVip');
+    $bangTins = $query->getResult(); // array of CmsArticle objects    
+    return array('bangTins'=>$bangTins);
+  }
+
+  // id là id termTaxonomy
+  public function  xemTinTheoKhuVucAction()
+  {    
+
+     $id = (int) $this->params()->fromRoute('id', 0);
+     if (!$id) {
+         return $this->redirect()->toRoute('rao_vat', array(
+             'action' => 'xemTin'
+         ));
+     }  
+    $this->layout('layout/giaodien'); 
+    $entityManager=$this->getEntityManager();
+    $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin and bT.idKhuVuc=\''.$id.'\''.' ORDER BY bT.idMucDoVip');
     $bangTins = $query->getResult(); // array of CmsArticle objects    
     return array('bangTins'=>$bangTins);
   }

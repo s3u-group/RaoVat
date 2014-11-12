@@ -46,42 +46,48 @@
 									<tr>
 										<td height="50px" style="border-top:none; background-color: #C0C0C0;">
 										<?php
-											if(count($bangTin->getHinhAnhs())>1)
+											if(count($bangTin->getHinhAnhs())>0)
 											{
+												
+												foreach ($bangTin->getHinhAnhs() as $hinhAnh) {	
+													if($hinhAnh->getMain()==1)
+													{
+														echo '&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
+													}
+												}
 												$co=0;
-												foreach ($bangTin->getHinhAnhs() as $hinhAnh) {												
+												foreach ($bangTin->getHinhAnhs() as $hinhAnh) {	
 													if($hinhAnh->getMain()!=1)
 													{
-														if(count($bangTin->getHinhAnhs())<=4)
+														if(count($bangTin->getHinhAnhs())<=3)
 														{
 															$co++;
-															if($co<=3)
+															if($co<=2)
 															{
-																echo '&nbsp;&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
+																echo '&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
 															}	
 														}	
 														else										
 														{
 															$co++;
-															if($co<=2)
+															if($co<=1)
 															{
-																echo '&nbsp;&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
+																echo '&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
 															}
-															if($co==3)
+															if($co==2)
 															{?>
 																<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemChiTietTin', 'id' => $bangTin->getIdTin())); ?>" style="font-size:14px; color:black">
-																	<b>Next</b>
+																	<img src="<?php echo $this->basePath().'/img/Next.PNG';?>" width="40px" height="50px"/>
 																</a>
 															<?php	
 															}
 														}
 													}
-													
 												}
 											}
 											else
 											{
-												echo '&nbsp;&nbsp;<img src="'.$this->basePath().'/img/DefaultImage.jpg'.'" width="40px" height="50px"/>';
+												echo '&nbsp;<img src="'.$this->basePath().'/img/DefaultImage.jpg'.'" width="40px" height="50px"/>';
 											}
 
 										?>
@@ -105,11 +111,10 @@
 						</tr>
 						<tr>						
 							<td>
-								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTheoLoaiTin', 'id' => $bangTin->getIdLoaiTin()->getIdLoaiTin())); ?>">
-									<?php
-										echo '<b style="color:blue;">'.$bangTin->getIdLoaiTin()->getTenLoaiTin().':</b><br>';
-									?>
-								</a>
+								<?php
+									echo '<b style="color:blue;">'.$bangTin->getIdLoaiTin()->getTenLoaiTin().':</b><br>';
+								?>
+								
 								<?php 
 									$arrayNoiDung=explode(' ', $bangTin->getNoiDung());
 									if(count($arrayNoiDung)<=12)
@@ -135,12 +140,16 @@
 						</tr>
 						<tr>						
 							<td height ="30px;" style="color:#C0C0C0;">Danh muc:
-								<?php echo $this->escapeHtml($bangTin->getIdDanhMuc()->getTermId()->getName());?>
+								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTinTheoDanhMuc', 'id' => $bangTin->getIdDanhMuc()->getTermTaxonomyId())); ?>" style="color:#C0C0C0;">
+									<?php echo $this->escapeHtml($bangTin->getIdDanhMuc()->getTermId()->getName());?>
+								</a>
 							</td>
 						</tr>
 						<tr>							
 							<td height ="30px;" style="color:#C0C0C0;">Khu vực:
-								<?php echo $this->escapeHtml($bangTin->getIdKhuVuc()->getTermId()->getName());?>
+								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTinTheoKhuVuc', 'id' => $bangTin->getIdKhuVuc()->getTermTaxonomyId())); ?>" style="color:#C0C0C0;">
+									<?php echo $this->escapeHtml($bangTin->getIdKhuVuc()->getTermId()->getName());?>
+								</a>
 							</td>
 						</tr>
 					</table>
