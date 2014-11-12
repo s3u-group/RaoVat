@@ -14,6 +14,7 @@
  use DateTimeZone;
  use Zend\Validator\File\Size;
 
+ use Zend\Stdlib\AbstractOptions;
 
  use RaoVat\Form\UpdateBangTinForm;
  use S3UTaxonomy\Form\CreateTermTaxonomyForm;
@@ -30,11 +31,53 @@
      }
      return $this->entityManager;
   }
-  public function testAction()
-  {
-    $this->layout('layout/giaodien');
-    //$url = 'https://www.';    
-    //return $this->redirect()->toUrl($url);
+  public function loginAction()
+  {    
+    // Build the redirect URL using the route to which we want
+    // the user returned.
+    $redirect = $this->url()->fromRoute('rao_vat');
+
+    // Set the redirect URL in the request so that ZfcUser can
+    // pick it up. This is the key.
+    $this->getRequest()->getQuery()->set('redirect', $redirect);
+
+    // Use ZfcUser's login action rather than its authentication
+    // action.
+    return $this->forward()->dispatch('zfcuser', array(
+        'action' => 'login'
+    ));
+  }
+  public function logoutAction()
+  {    
+    // Build the redirect URL using the route to which we want
+    // the user returned.
+    $redirect = $this->url()->fromRoute('rao_vat');
+
+    // Set the redirect URL in the request so that ZfcUser can
+    // pick it up. This is the key.
+    $this->getRequest()->getQuery()->set('redirect', $redirect);
+
+    // Use ZfcUser's login action rather than its authentication
+    // action.
+    return $this->forward()->dispatch('zfcuser', array(
+        'action' => 'logout'
+    ));
+  }
+  public function registerAction()
+  {    
+    // Build the redirect URL using the route to which we want
+    // the user returned.
+    $redirect = $this->url()->fromRoute('rao_vat');
+
+    // Set the redirect URL in the request so that ZfcUser can
+    // pick it up. This is the key.
+    $this->getRequest()->getQuery()->set('redirect', $redirect);
+
+    // Use ZfcUser's login action rather than its authentication
+    // action.
+    return $this->forward()->dispatch('zfcuser', array(
+        'action' => 'register'
+    ));
   }
   public function xemTinAction()
   {    
