@@ -34,27 +34,83 @@
   {    
     $this->layout('layout/giaodien'); 
     $entityManager=$this->getEntityManager();
-    $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin');
+    $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin ORDER BY bT.idMucDoVip');
     $bangTins = $query->getResult(); // array of CmsArticle objects    
     return array('bangTins'=>$bangTins);
-
-   /* $bangTins=$entityManager->getRepository('RaoVat\Entity\BangTin')->findAll();
-    $i=-1;
-    foreach ($bangTins as $bangTin) {
-       $i++;
-       $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
-       $queryBuilder = $repository->createQueryBuilder('hA');
-       $queryBuilder->add('where','hA.idTin='.$bangTin->getIdTin().' order by hA.main DESC');
-       $query = $queryBuilder->getQuery();
-       $hinhAnhs = $query->execute();
-       $bangTins[$i]->addHinhAnhs($hinhAnhs);
-      
-    }
-
-    die(var_dump($bangTins));*/
-
   }
   
+  public function xemChiTietTinAction()
+  {    
+
+     $id = (int) $this->params()->fromRoute('id', 0);
+     if (!$id) {
+         return $this->redirect()->toRoute('rao_vat', array(
+             'action' => 'xemTin'
+         ));
+     }  
+
+    $this->layout('layout/giaodien'); 
+    $entityManager=$this->getEntityManager();
+    $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin and bT.idTin='.$id.' ORDER BY bT.idMucDoVip');
+    $bangTins = $query->getResult(); // array of CmsArticle objects    
+    return array('bangTins'=>$bangTins);
+  }
+
+
+  public function  xemTinTheoGiaAction()
+  {    
+
+     $id = (int) $this->params()->fromRoute('id', 0);
+     if (!$id) {
+         return $this->redirect()->toRoute('rao_vat', array(
+             'action' => 'xemTin'
+         ));
+     }  
+
+    $this->layout('layout/giaodien'); 
+    $entityManager=$this->getEntityManager();
+    $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin and bT.gia<='.$id.' ORDER BY bT.idMucDoVip');
+    $bangTins = $query->getResult(); // array of CmsArticle objects    
+    return array('bangTins'=>$bangTins);
+  }
+
+  public function  xemTheoLoaiTinAction()
+  {    
+
+     $id = (int) $this->params()->fromRoute('id', 0);
+     if (!$id) {
+         return $this->redirect()->toRoute('rao_vat', array(
+             'action' => 'xemTin'
+         ));
+     }  
+
+    $this->layout('layout/giaodien'); 
+    $entityManager=$this->getEntityManager();
+    $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin and bT.idLoaiTin='.$id.' ORDER BY bT.idMucDoVip');
+    $bangTins = $query->getResult(); // array of CmsArticle objects    
+    return array('bangTins'=>$bangTins);
+  }
+
+  public function  xemTinTheoNgayAction()
+  {    
+
+     $id = (int) $this->params()->fromRoute('id', 0);
+     if (!$id) {
+         return $this->redirect()->toRoute('rao_vat', array(
+             'action' => 'xemTin'
+         ));
+     }  
+    $this->layout('layout/giaodien'); 
+    $entityManager=$this->getEntityManager();
+    $bangTin=$entityManager->getRepository('RaoVat\Entity\BangTin')->find($id);
+    $ngayDang=date_format($bangTin->getNgayDang(),'Y-m-d');
+    //die(var_dump($ngayDang));
+    $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin and bT.ngayDang=\''.$ngayDang.'\''.' ORDER BY bT.idMucDoVip');
+    $bangTins = $query->getResult(); // array of CmsArticle objects    
+    return array('bangTins'=>$bangTins);
+  }
+ 
+
  	public function indexAction()
  	{
     $entityManager=$this->getEntityManager();

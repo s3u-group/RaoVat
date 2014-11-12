@@ -96,7 +96,7 @@
 										</a>
 									</b> VNĐ 
 								<br> 
-								Ngày đăng: <a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTinTheoNgay', 'id' => $bangTin->getIdTin())); ?>">
+								Ngày đăng: <a href="#">
 									<b style="color:blue;">
 										<?php echo $this->escapeHtml(date_format($bangTin->getNgayDang(),'d/m/Y'));?>
 									</b>
@@ -105,7 +105,7 @@
 						</tr>
 						<tr>						
 							<td>
-								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTheoLoaiTin', 'id' => $bangTin->getIdLoaiTin()->getIdLoaiTin())); ?>">
+								<a href="">
 									<?php
 										echo '<b style="color:blue;">'.$bangTin->getIdLoaiTin()->getTenLoaiTin().':</b><br>';
 									?>
