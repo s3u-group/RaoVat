@@ -16,12 +16,7 @@
 
 						<tr>
 							<td colspan="2">
-								Tiêu đề: 
-								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemChiTietTin', 'id' => $bangTin->getIdTin())); ?>" style="color:black;">
-									<b>
-										<?php echo $this->escapeHtml($bangTin->getTieuDe());?>
-									</b>
-								</a>
+								Tiêu đề: <a href="#" style="color:black;"><?php echo '<b>'.$this->escapeHtml($bangTin->getTieuDe());?></b></a>
 								
 							</td>
 						</tr>
@@ -68,11 +63,8 @@
 																echo '&nbsp;&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
 															}
 															if($co==3)
-															{?>
-																<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemChiTietTin', 'id' => $bangTin->getIdTin())); ?>" style="font-size:14px; color:black">
-																	<b>Next</b>
-																</a>
-															<?php	
+															{
+																echo '&nbsp;&nbsp;<a href="#" style="font-size:14px; color:black"><b>Next</b></a>';
 															}
 														}
 													}
@@ -90,25 +82,15 @@
 								</table>
 							</td>
 							<td height="50px;">
-								Giá:<b style="color:red">
-										<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTinTheoGia', 'id' => $bangTin->getGia())); ?>" style="color:red;">
-											<?php echo $this->escapeHtml($bangTin->getGia());?>
-										</a>
-									</b> VNĐ 
-								<br> 
-								Ngày đăng: <a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTinTheoNgay', 'id' => $bangTin->getIdTin())); ?>">
-									<b style="color:blue;">
-										<?php echo $this->escapeHtml(date_format($bangTin->getNgayDang(),'d/m/Y'));?>
-									</b>
-								</a>
+							Giá:<b style="color:red"><a href="#" style="color:red;"><?php echo $this->escapeHtml($bangTin->getGia());?></a></b> VNĐ <br> Ngày đăng: <a href="#"><b style="color:blue;"><?php echo $this->escapeHtml(date_format($bangTin->getNgayDang(),'d/m/Y'));?></b></a>
 							</td>
 						</tr>
 						<tr>						
 							<td>
-								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTheoLoaiTin', 'id' => $bangTin->getIdLoaiTin()->getIdLoaiTin())); ?>">
-									<?php
-										echo '<b style="color:blue;">'.$bangTin->getIdLoaiTin()->getTenLoaiTin().':</b><br>';
-									?>
+								<a href="">
+								<?php
+									echo '<b style="color:blue;">'.$bangTin->getIdLoaiTin()->getTenLoaiTin().':</b><br>';
+								?>
 								</a>
 								<?php 
 									$arrayNoiDung=explode(' ', $bangTin->getNoiDung());
@@ -128,9 +110,7 @@
 									
 								?>
 								<br>
-								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemChiTietTin', 'id' => $bangTin->getIdTin())); ?>">
-									Xem chi tiết...
-								</a>
+								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemChiTietTin', 'id' => $bangTin->getIdTin())); ?>">Xem chi tiết...</a>
 							</td>
 						</tr>
 						<tr>						
