@@ -11,8 +11,15 @@
 				echo '<tr>';
 			}
 		?>	
-				<td width="500px;">
-					<table align="center" width="100%" height="100%" style="border:thin solid blue; background:white">	
+		<?php 
+			if($i==1&&count($bangTins)>1)
+			{
+				echo '<td width="500px;" style="border-right:thin solid #2A6496;">';
+			}
+			else
+				echo '<td width="500px;">';
+		?>		
+					<table align="center" width="100%" height="100%">	
 
 						<tr>
 							<td colspan="2">
@@ -27,7 +34,7 @@
 						</tr>
 						<tr>
 							<td rowspan="4" width="150px" height="200px">
-								<table align="center" width="100%" height="100%" border="1px" style="border-spacing:0px; border-padding:0px; border-left:none; border-top:none; border-right:none; border-bottom:none; margin-left:-4px; margin-bottom:-4px; border-color:blue; ">
+								<table align="center" width="100%" height="100%" style="border-spacing:0px; border-padding:0px; border-left:none; border-top:none; border-right:none; border-bottom:none; border-color:blue; ">
 									<tr>
 										<td height="150px">
 										<?php
@@ -158,7 +165,10 @@
 		<?php
 			if($i==2)
 			{
-				echo '</tr><tr><td height="20px"colspan="2" style="background-color:white"></td></tr>';
+				echo '</tr><tr>
+						<td height="20px" style="border-right:thin solid #2A6496;"></td>
+						<td></td>
+					  </tr>';
 				$i=0;
 			}		
 		}				
