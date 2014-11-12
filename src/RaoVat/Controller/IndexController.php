@@ -30,6 +30,12 @@
      }
      return $this->entityManager;
   }
+  public function testAction()
+  {
+    $this->layout('layout/giaodien');
+    //$url = 'https://www.';    
+    //return $this->redirect()->toUrl($url);
+  }
   public function xemTinAction()
   {    
     $this->layout('layout/giaodien'); 
