@@ -15,7 +15,7 @@
 	src: url('../fonts/Comfortaa/Comfortaa-Regular.woff') format('woff'), url('../fonts/Comfortaa/Comfortaa-Regular.ttf') format('truetype'), url('../fonts/Comfortaa/Comfortaa-Regular.svg') format('svg');
 }
 body {
-	background: #ededed url(../images/bg-header.gif) repeat-x top center;
+	/*background-image: url('../img/background.jpg');*//*repeat-x top center*/
 	line-height: 1;
 	font-size: 14px;
 	font-family: Arial, Helvetica, sans-serif;
@@ -26,6 +26,7 @@ body {
 	margin: 0 auto;
 	padding: 0;
 	width: 960px;
+	
 }
 #header .section {
 	margin: 0;
@@ -39,19 +40,19 @@ body {
 	width: 324px;
 }
 #header .section .logo a {
-	/*background: url(../images/bg-logo.png) repeat-x top left;*/
+	background-image: url('../img/logo.png');	
 	color: #fff;
 	display: block;
 	font-family: 'initial';
 	font-size: 60px;
 	font-weight: normal;
-	height: 130px;
+	height: 125px;
 	line-height: 130px;
 	margin: -10px 0px 0px -20px;
 	padding: 0;
 	text-align:center;
 	text-decoration: none;	/*text-transform: uppercase;*/
-	width: 270px;	
+	width: 370px;	
 }
 #header .section ul {
 	display: inline-block;

@@ -1,5 +1,5 @@
 <?php //die(var_dump($bangTins[1]->getHinhAnhs()[0]->getViTri())); ?>
-<table border="0" align="center" width="100%" height="200px" style="border-spacing:0px; font-size:20px;">	
+<table border="0" align="center" width="100%" height="200px" style="border-spacing:0px;">	
 <?php $i=0;
 	foreach($bangTins as $bangTin)
 	{?>
@@ -19,7 +19,7 @@
 			else
 				echo '<td width="500px;">';
 		?>							
-					<table align="center" width="100%" height="100%">	
+					<table align="center" width="100%" height="100%" style="background-color:white;">	
 
 						<tr>
 							<td colspan="2">
@@ -71,7 +71,7 @@
 															$co++;
 															if($co<=2)
 															{
-																echo '&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
+																echo '&nbsp;&nbsp;&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
 															}	
 														}	
 														else										
@@ -79,12 +79,12 @@
 															$co++;
 															if($co<=1)
 															{
-																echo '&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
+																echo '&nbsp;&nbsp;&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
 															}
 															if($co==2)
 															{?>
-																<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemChiTietTin', 'id' => $bangTin->getIdTin())); ?>" style="font-size:14px; color:black">
-																	<img src="<?php echo $this->basePath().'/img/Next.PNG';?>" width="40px" height="50px"/>
+																&nbsp;<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemChiTietTin', 'id' => $bangTin->getIdTin())); ?>" style="font-size:14px; color:black">
+																	<img src="<?php echo $this->basePath().'/img/Next.PNG';?>" width="40px" height="50px" style="background-color:white;"/>
 																</a>
 															<?php	
 															}
@@ -164,7 +164,7 @@
 			if($i==2)
 			{
 				echo '</tr><tr>
-						<td height="20px" style="border-right:thin solid #2A6496;"></td>
+						<td height="20px"></td>
 						<td></td>
 					  </tr>';
 				$i=0;
