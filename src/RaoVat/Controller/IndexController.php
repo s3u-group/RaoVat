@@ -55,19 +55,6 @@
         'action' => 'logout'
     ));
   }
-  public function registerAction()
-  {
-/*    $this->layout('layout/giaodien');        
-    $register=new ViewModel();
-    $register->setTemplate('zfc-user/user/register.phtml');
-    return $register;*/
-    $this->layout('layout/giaodien');        
-    $redirect = $this->url()->fromRoute('rao_vat');
-    $this->getRequest()->getQuery()->set('redirect', $redirect);
-    return $this->forward()->dispatch('zfcuser', array(
-        'action' => 'register'
-    ));
-  }   
 
   // xem tất cả các tin đây là action mặc định
   public function xemTinAction()
@@ -304,7 +291,7 @@
              $entityManager->flush();
           }
         }
-        return $this->redirect()->toRoute('rao_vat');
+        return $this->redirect()->toRoute('rao_vat/crud',array('action'=>'index'));
       }
       else
       {
@@ -579,6 +566,8 @@
      }
      return $this->redirect()->toRoute('rao_vat/crud',array('action'=>'edit','id'=>$idTin->getIdTin()->getIdTin()));
   }
+
+
 
  }
 ?>

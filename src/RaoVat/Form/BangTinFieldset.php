@@ -129,7 +129,6 @@ class BangTinFieldset extends Fieldset implements InputFilterProviderInterface
              ),
          ));
 
-        
 
          $hinhAnhFieldset = new HinhAnhFieldset($objectManager);
          $hinhAnhFieldset->setUseAsBaseFieldset(true);
