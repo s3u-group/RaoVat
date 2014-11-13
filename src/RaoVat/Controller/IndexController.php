@@ -302,7 +302,7 @@
              $entityManager->flush();
           }
         }
-        return $this->redirect()->toRoute('rao_vat');
+        return $this->redirect()->toRoute('rao_vat/crud',array('action'=>'index'));
       }
       else
       {
