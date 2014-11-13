@@ -58,7 +58,7 @@
  		<?php $danhMuc=$bangTin->get('idDanhMuc');?>
  		<?php $danhMuc->setAttribute('class','form-control');?>
  		<label><?php echo $danhMuc->getLabel(); ?></label>
- 		<?php $danhMuc->setValueOptions($this->ChangeArrayFromObjectTermTaxonomy('khu-vuc'));?> 	 	
+ 		<?php $danhMuc->setValueOptions($this->MakeArrayOptionTaxonomy($danhMucs));?> 	 	
  		<?php echo $this->formElement($danhMuc);?> 
 </div>
 
