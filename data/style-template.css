@@ -29,14 +29,14 @@ body {
 	
 }
 #header .section {
-	margin: 0;
+	margin: -30px 0px 0px;
 	padding: 0;
 	overflow: hidden;
 }
 #header .section .logo {
 	float: left;
 	margin: 0;
-	padding: 60px 0 0 10px;
+	padding: 30px 0 0 20px;
 	width: 324px;
 }
 #header .section .logo a {
