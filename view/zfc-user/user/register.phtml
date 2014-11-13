@@ -1,5 +1,4 @@
-<h1><?php echo $this->translate('ĐĂNG KÝ'); ?></h1>
-
+<?php $this->layout('layout/giaodien');?>
 <?php
 if (!$this->enableRegistration) {
     print "Registration is disabled";
@@ -7,22 +6,50 @@ if (!$this->enableRegistration) {
 }
 $form = $this->registerForm;
 $form->prepare();
-$form->setAttribute('action', 'register');
+$form->setAttribute('action', $this->url('zfcuser/register'));
 $form->setAttribute('method', 'post');
 ?>
-
 <?php echo $this->form()->openTag($form) ?>
-    <dl class="zend_form">
+    <table align="center" width="100%">
+      <tr>
+          <td style="text-align:center; padding-bottom:10px;">            
+                  <span class="label label-primary" style="padding-left:390px; padding-right:390px; text-align:center; font-size:16px;">ĐĂNG KÝ THÀNH VIÊN</span>
+          </td>
+        </tr>
+    </table>
+  
+    <dl class="zend_form">      
     <?php foreach ($form as $element): ?>
         <?php if (!$element instanceof Zend\Form\Element\Button): ?>
-            <dt><?php echo $this->formLabel($element) ?></dt>
+            <dt>
+              <span class="label label-primary"><label for="email" style="width:150px;"><?php echo $this->formLabel($element) ?></label></span>
+            </dt>
         <?php endif ?>
-        <?php if ($element instanceof Zend\Form\Element\Button): ?>
-            <dd><?php echo $this->formButton($element) ?></dd>
+        <?php if ($element instanceof Zend\Form\Element\Button): ?> 
+            <dt>&nbsp;
+            </dt>       
+            <dd>
+                <?php $element->setAttribute('class','btn btn-primary');?>
+                <?php echo $this->formButton($element); ?>&nbsp;&nbsp;&nbsp;&nbsp;               
+                <a href="<?php echo $this->url('zfcuser/register',array('action'=>'logout'));?>">
+                <button type="button" class="btn btn-warning">
+                  Nhập lại
+              </button>
+            </a>
+            </dd>
         <?php elseif ($element instanceof Zend\Form\Element\Captcha): ?>
-            <dd><?php echo $this->formCaptcha($element) . $this->formElementErrors($element) ?></dd>
+            <dd>   
+                 <?php $element->setAttribute('class','form-control');?> 
+                 <?php echo $this->formCaptcha($element); ?>
+                 <?php echo $this->formElementErrors($element); ?>
+
+            </dd>
         <?php else: ?>
-            <dd><?php echo $this->formInput($element) . $this->formElementErrors($element) ?></dd>
+            <dd>
+              <?php $element->setAttribute('class','form-control');?>
+              <?php echo $this->formInput($element); ?>
+              <?php echo  $this->formElementErrors($element); ?>
+            </dd>
         <?php endif ?>
     <?php endforeach ?>
     </dl>
@@ -30,3 +57,4 @@ $form->setAttribute('method', 'post');
         <input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
     <?php endif ?>
 <?php echo $this->form()->closeTag() ?>
+       
