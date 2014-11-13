@@ -14,7 +14,7 @@
 		<?php 
 			if($i==1&&count($bangTins)>1)
 			{
-				echo '<td width="500px;" style="border-right:thin solid #2A6496;">';
+				echo '<td width="500px;" style="border-right:10px solid #E6F0A4;">';
 			}
 			else
 				echo '<td width="500px;">';
@@ -22,9 +22,7 @@
 					<table align="center" width="100%" height="100%" style="background-color:white;">	
 
 						<tr>
-							<td >
-								Tiêu đề: 
-								
+							<td >								
 									<b>
 										<?php echo $this->escapeHtml($bangTin->getTieuDe());?>
 									</b>
@@ -33,8 +31,8 @@
 						</tr>
 						<tr>
 							<td >
-								Giá:<b style="color:red">
-										<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTinTheoGia', 'id' => $bangTin->getGia())); ?>" style="color:red;">
+								Giá:<b>
+										<a style="color:#eea236;" href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTinTheoGia', 'id' => $bangTin->getGia())); ?>">
 											<?php echo $this->escapeHtml($bangTin->getGia());?>
 										</a>
 									</b> VNĐ. 
@@ -94,7 +92,7 @@
 							<td>
 								<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemTheoLoaiTin', 'id' => $bangTin->getIdLoaiTin()->getIdLoaiTin())); ?>">
 									<?php
-										echo '<b style="color:blue;">'.$bangTin->getIdLoaiTin()->getTenLoaiTin().':</b><br>';
+										echo '<b style="color:#357ebd;">'.$bangTin->getIdLoaiTin()->getTenLoaiTin().':</b><br>';
 									?>
 								</a>
 								<?php 
@@ -122,7 +120,7 @@
 			if($i==2)
 			{
 				echo '</tr><tr>
-						<td height="20px"></td>
+						<td height="10px"></td>
 						<td></td>
 					  </tr>';
 				$i=0;
