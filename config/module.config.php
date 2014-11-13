@@ -68,8 +68,17 @@ return array(
             'make_array_option_taxonomy'=>'RaoVat\View\Helper\MakeArrayOptionTaxonomy',  
             'make_array_option_muc_do_vip'=>'RaoVat\View\Helper\MakeArrayOptionMucDoVip',  
             'make_array_option_loai_tin'=>'RaoVat\View\Helper\MakeArrayOptionLoaiTin',
-            'change_array_from_object_term_taxonomy'=>'RaoVat\View\Helper\ChangeArrayFromObjectTermTaxonomy',  
+            //'change_array_from_object_term_taxonomy'=> 'RaoVat\View\Helper\ChangeArrayFromObjectTermTaxonomy',  
 
+        ),
+
+        'factories'=>array(
+            'change_array_from_object_term_taxonomy' => function($sm){
+                $entityManager=$sm->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+                $doctrineRaoVatHelper=new \RaoVat\View\Helper\ChangeArrayFromObjectTermTaxonomy();
+                $doctrineRaoVatHelper->setEntityManager($entityManager);
+                return $doctrineRaoVatHelper;
+            },
         ),
     ),
 
