@@ -67,13 +67,15 @@
     return $this->forward()->dispatch('zfcuser', array(
         'action' => 'register'
     ));
-  }
+  }   
 
   // xem tất cả các tin đây là action mặc định
   public function xemTinAction()
   {    
     $this->layout('layout/giaodien'); 
-    $entityManager=$this->getEntityManager();
+
+    $entityManager=$this->getEntityManager();        
+
     $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin ORDER BY bT.idMucDoVip');
     $bangTins = $query->getResult(); // array of CmsArticle objects    
     return array('bangTins'=>$bangTins);
@@ -95,7 +97,7 @@
     $bangTins = $query->getResult(); // array of CmsArticle objects    
     return array('bangTins'=>$bangTins);
   }
-
+ 
 
   // id là giá 
   public function  xemTinTheoGiaAction()
