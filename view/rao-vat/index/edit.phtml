@@ -7,6 +7,12 @@
  <h1>
  	<?php echo $this->escapeHtml($title); ?>
  </h1>
+ <p>
+	<a href="<?php echo $this->url('rao_vat/crud', array('action'=>'add'));?>">Thêm bảng tin</a>
+</p>
+<p>
+  <a href="<?php echo $this->url('rao_vat/crud', array('action'=>'xem-tin'));?>">Trang chủ</a>
+</p>
 <a href="<?php echo $this->url('rao_vat/crud',array('action' => 'index')); ?>">Quay lại</a>
 <?php
  $form->setAttribute('action', $this->url('rao_vat/crud',array('action' => 'edit','id'=> $this->id)));

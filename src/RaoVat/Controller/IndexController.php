@@ -177,7 +177,59 @@
     $bangTins = $query->getResult(); // array of CmsArticle objects    
     return array('bangTins'=>$bangTins);
   }
- 
+  
+  public function timKiemAction()
+  {
+    $dieuKien='';
+    $request = $this->getRequest();
+    if($request->isPost())
+    {
+      //die(var_dump($request->getPost()));
+      
+      if($request->getPost()['tk_theo_tieu_de'])
+      {
+        $dieuKien.=' and bT.tieuDe LIKE \'%'.trim($request->getPost()['tk_theo_tieu_de']).'%\'';
+      } 
+
+      // điều kiện giá từ khoảng này đến khoảng kia     
+      if($request->getPost()['tk_theo_gia_tu']||$request->getPost()['tk_theo_gia_den'])
+      {
+        if($request->getPost()['tk_theo_gia_tu']&&$request->getPost()['tk_theo_gia_den'])
+        {
+          $dieuKien.=' and bT.gia BETWEEN '.$request->getPost()['tk_theo_gia_tu'].' AND '.$request->getPost()['tk_theo_gia_den'];
+        }
+        else
+        {
+          if($request->getPost()['tk_theo_gia_tu'])
+          {
+            $dieuKien.=' and bT.gia BETWEEN 0 AND '.$request->getPost()['tk_theo_gia_tu'];
+          }
+          else
+          {
+            $dieuKien.=' and bT.gia BETWEEN 0 AND '.$request->getPost()['tk_theo_gia_den'];
+          }
+          
+        }       
+        
+      }      
+      if($request->getPost()['tk_theo_id_danh_muc'])
+      {
+        $dieuKien.=' and bT.idDanhMuc='.$request->getPost()['tk_theo_id_danh_muc'];
+      }
+      if($request->getPost()['tk_theo_id_khu_vuc'])
+      {
+        $dieuKien.=' and bT.idKhuVuc='.$request->getPost()['tk_theo_id_khu_vuc'];
+      }
+      //die(var_dump($dieuKien));
+    }
+    
+    $this->layout('layout/giaodien'); 
+    $entityManager=$this->getEntityManager();
+    $query = $entityManager->createQuery('SELECT bT FROM RaoVat\Entity\BangTin bT JOIN RaoVat\Entity\HinhAnh hA WHERE bT.idTin=hA.idTin '.$dieuKien.' ORDER BY bT.idMucDoVip');
+    $bangTins = $query->getResult(); // array of CmsArticle objects    
+    return array('bangTins'=>$bangTins);
+}
+
 
  	public function indexAction()
  	{
