@@ -118,30 +118,50 @@
 		
 	</div>
 	<div id="body">
-		<form name="frm_tiemkiem" method="post" action="">
+		<?php	
+			$url = $this->url('rao_vat/crud', array(
+			     'action' => 'timKiem'
+			 ));
+		?>
+
+		<form name="frm_tiemkiem" method="post" action="<?php echo $url; ?>">
 			<table border="0">
 				<tr>
 					<!-- <td>Tiêu đề</td> -->
 					<td style="width:300px;">						
-						<input type="text" class="form-control" placeholder="Tiêu đề bảng tin" title="Tìm theo tiêu đề bảng tin">
+						<input type="text" name="tk_theo_tieu_de" class="form-control" placeholder="Tiêu đề bảng tin" title="Tìm theo tiêu đề bảng tin">
 					</td>
 
 					<td>&nbsp;</td>
-					<td style="width:195px;">						
-						<input type="number" class="form-control" min="100" step="100" placeholder="Giá" title="Giá phải là số">
+					<td style="width:90px;">						
+						<input type="number" name="tk_theo_gia_tu" class="form-control" min="100" step="100" placeholder="Giá từ" title="Giá phải là số">
+					</td>
+					<td> 
+						<i style="font-size:20px">-</i>
+					</td>
+					<td style="width:90px;">						
+						<input type="number" name="tk_theo_gia_den" class="form-control" min="100" step="100" placeholder="Đến" title="Giá phải là số">
 					</td>
 
 					<td>&nbsp;</td>
-					<td style="width:220px;">						
-						<select class="form-control">
-						  <option value="kv1">Khu vực 1</option>						  
+					<td style="width:220px;">		
+					<?php $danhMucs=$this->ChangeArrayFromObjectTermTaxonomy('danh-muc'); ?>		
+						<select class="form-control" name="tk_theo_id_danh_muc">
+							<option value="">&nbsp;---Tìm theo danh mục---</option>
+						<?php foreach($danhMucs as $idDM=>$danhMuc){ ?>
+						  	<option value="<?php echo $idDM; ?>"><?php echo $danhMuc;?></option>	  
+						<?php } ?>
 						</select>					
 					</td>
 
 					<td>&nbsp;</td>
 					<td style="width:220px;">
-						<select class="form-control">
-						  <option value="dm1">Danh Mục 1</option>						  
+						<?php $khuVucs=$this->ChangeArrayFromObjectTermTaxonomy('khu-vuc'); ?>	
+						<select class="form-control" name="tk_theo_id_khu_vuc">
+							<option value="">&nbsp;---Tìm theo khu vực---</option>
+							<?php foreach($khuVucs as $idKV=>$khuVuc){ ?>
+						  	<option value="<?php echo $idKV; ?>"><?php echo $khuVuc; ?></option>
+						  	<?php } ?>						  
 						</select>					
 					</td>
 

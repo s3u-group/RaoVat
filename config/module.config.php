@@ -37,7 +37,8 @@ return array(
 
 	'view_manager' => array(
 		'template_path_stack' => array(
-			'rao_vat' => __DIR__ . '/../view',         
+			'rao_vat' => __DIR__ . '/../view',
+            'zfcuser' => __DIR__ . '/../view',        
 		),
         'template_map'=>array(
             'layout/giaodien'        => __DIR__ . '/../view/layout/giao-dien.phtml',
@@ -68,7 +69,6 @@ return array(
             'make_array_option_taxonomy'=>'RaoVat\View\Helper\MakeArrayOptionTaxonomy',  
             'make_array_option_muc_do_vip'=>'RaoVat\View\Helper\MakeArrayOptionMucDoVip',  
             'make_array_option_loai_tin'=>'RaoVat\View\Helper\MakeArrayOptionLoaiTin',
-            //'change_array_from_object_term_taxonomy'=> 'RaoVat\View\Helper\ChangeArrayFromObjectTermTaxonomy',  
 
         ),
 
@@ -79,8 +79,16 @@ return array(
                 $doctrineRaoVatHelper->setEntityManager($entityManager);
                 return $doctrineRaoVatHelper;
             },
-        ),
+        ), 
+        'shared'=>array(
+            'change_array_from_object_term_taxonomy'=>false,
+        ),       
     ),
+
+    
+
+
+    
 
     /*'bjyauthorize'=>array(
 

@@ -20,14 +20,14 @@ if ($this->zfcUserIdentity()) {
 	<a href="<?php echo $this->url('rao_vat/crud', array('action'=>'add'));?>">Thêm bảng tin</a>
 </p>
 <p>
-  <a href="<?php echo $this->url('rao_vat/crud', array('action'=>'xem-tin'));?>">Template</a>
+  <a href="<?php echo $this->url('rao_vat/crud', array('action'=>'xem-tin'));?>">Trang chủ</a>
 </p>
 <form method="post">
  <table class="table">
- <tr>
+ <tr  class="panel-heading">
      
-     <th>Tiêu đề</th>
-     <th>Nội dung</th>
+     <th width="100px">Tiêu đề</th>
+     <th width="300px">Nội dung</th>
      <th>Ngày đăng</th>
      <th>Ngày kết thúc</th>
      <th>Dannh mục</th>

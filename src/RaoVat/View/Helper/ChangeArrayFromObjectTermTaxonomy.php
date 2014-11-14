@@ -46,25 +46,30 @@ class ChangeArrayFromObjectTermTaxonomy extends AbstractHelper{
         $queryBuilder = $repository->createQueryBuilder('tt');
         $queryBuilder->add('where','tt.taxonomy=\''.$taxonomy.'\'');
         $query = $queryBuilder->getQuery();
-        $zfTermTaxonomys = $query->execute(); 
+        $zfTermTaxonomys = $query->execute();
         if(!$zfTermTaxonomys)
         {
-            return $zfTermTaxonomys;
-        }
-        
-        $zfTermTaxonomys=$this->viewHelperOutputTree($zfTermTaxonomys, $root = null); 
-       
-        return $zfTermTaxonomys;
+            return null;
+        }        
+        $this->mangTam=array();
+        $zfTermTaxonomy=$this->viewHelperOutputTree($zfTermTaxonomys, $root = null);  
+        return $zfTermTaxonomy;
     }
 	
 	public function __invoke($slug){
-		$entityManager=$this->getEntityManager();
-
 		$mang=$this->viewHelperGetListChildTaxonomy($slug);
-
 		$array = array();		
 		foreach($mang as $item){
-			$array[$item->getTermTaxonomyId()] = $item->getTermId()->getName(); 
+            if($item->getCap()>0)
+            {
+                $str='';
+                for($i=0; $i<$item->getCap();$i++)
+                {
+                    $str.='__ ';
+                }
+                $str.= $item->getTermId()->getName(); 
+			    $array[$item->getTermTaxonomyId()] =$str;
+            }
 		}
 		return $array;
 	}
