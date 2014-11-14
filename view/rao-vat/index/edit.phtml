@@ -97,7 +97,8 @@
 	foreach($hinhAnhs as $hinhAnh)
 	{?>
 		<?php $i+=1;
-		$yMD=$hinhAnh->getIdTin()->getNgayTao()->format('Y/m/d');
+
+		$yMD=$hinhAnh->getIdTin()->getNgayTao()->format('Y/m/d').'/'.$hinhAnh->getIdTin()->getIdTin();
 		if($i==1||$i==2)
 		{
 			if($i==1)

@@ -35,23 +35,27 @@
 						</tr>
 						<tr>
 							<td rowspan="4" width="150px" height="200px">
+								<div id="links">
 								<table align="center" width="100%" height="100%" style="border-spacing:0px; border-padding:0px; border-left:none; border-top:none; border-right:none; border-bottom:none;  border-color:blue; ">
 									<tr>
 										<td height="150px">
 										<?php
-											$yMD=$bangTin->getNgayTao()->format('Y/m/d');
+											$yMD=$bangTin->getNgayTao()->format('Y/m/d').'/'.$bangTin->getIdTin();
 											//die(var_dump($yMD));
 											foreach ($bangTin->getHinhAnhs() as $hinhAnh) {
 												if($hinhAnh->getMain()==1)
 												{
+													?><a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemChiTietTin', 'id' => $bangTin->getIdTin())); ?>">
+													<?php
 													echo '<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'"width="150px" height="100%"/>';													
+													?></a><?php
 												}
 												
 											}
 										?>
 										</td>	
 									</tr>
-									<tr>
+									<tr>										
 										<td height="50px" style="border-top:none; background-color: #E3E3E3;">
 										<?php
 											if(count($bangTin->getHinhAnhs())>0)
@@ -59,8 +63,12 @@
 												
 												foreach ($bangTin->getHinhAnhs() as $hinhAnh) {	
 													if($hinhAnh->getMain()==1)
-													{
-														echo '&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
+													{														
+														?>
+														<a href="<?php echo $this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri();?>" data-gallery>
+														<?php
+														echo '<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
+														?></a><?php
 													}
 												}
 												$co=0;
@@ -72,7 +80,12 @@
 															$co++;
 															if($co<=2)
 															{
-																echo '&nbsp;&nbsp;&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
+																echo '&nbsp;&nbsp;';
+																?>
+																<a href="<?php echo $this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri();?>" data-gallery>
+																<?php
+																echo '<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
+																?></a><?php
 															}	
 														}	
 														else										
@@ -80,12 +93,18 @@
 															$co++;
 															if($co<=1)
 															{
-																echo '&nbsp;&nbsp;&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
+																echo '&nbsp;&nbsp;&nbsp;';
+																?>
+																<a href="<?php echo $this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri();?>" data-gallery>
+																<?php
+																echo '<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="40px" height="50px"/>';
+																?></a><?php
 															}
 															if($co==2)
-															{?>
-																&nbsp;
-																<a href="<?php echo $this->url('rao_vat/crud',array('action' => 'xemChiTietTin', 'id' => $bangTin->getIdTin())); ?>" style="text-decoration:none;">
+															{															
+																echo '&nbsp;';
+																?>
+																<a href="<?php echo $this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri();?>" data-gallery>
 																	<img src="<?php echo $this->basePath().'/img/Next.PNG';?>" width="40px" height="50px" style="background-color:white;"/>
 																</a>
 															<?php	
@@ -96,13 +115,18 @@
 											}
 											else
 											{
+												?>
+												<a href="<?php echo $this->basePath().'/img/DefaultImage.jpg';?>" data-gallery>
+												<?php
 												echo '&nbsp;<img src="'.$this->basePath().'/img/DefaultImage.jpg'.'" width="40px" height="50px"/>';
+												?></a><?php
 											}
 
 										?>
 										</td>	
 									</tr>
 								</table>
+								</div>
 							</td>
 							<td height="50px;">
 								Giá:<b >

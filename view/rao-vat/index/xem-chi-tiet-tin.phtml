@@ -50,11 +50,14 @@
 									<tr>
 										<td width="84%" height="100%" style='text-align:center'>
 										<?php
-											$yMD=$bangTin->getNgayTao()->format('Y/m/d');
+											$yMD=$bangTin->getNgayTao()->format('Y/m/d').'/'.$bangTin->getIdTin();
 											foreach ($bangTin->getHinhAnhs() as $hinhAnh) {
 												if($hinhAnh->getMain()==1)
 												{
+													?><a href="<?php echo $this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri();?>" data-gallery>
+													<?php
 													echo '<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="300px" height="400px" align="center"/>';
+													?></a><?php
 												}
 												
 											}
@@ -66,16 +69,23 @@
 											<td width="75px">
 												<?php
 													$co=0;
-													foreach ($bangTin->getHinhAnhs() as $hinhAnh) {													
-														$co++;
-														if($co<=10)
-														{
-															echo '&nbsp;&nbsp;<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="60px" height=80px"/>';
-															echo '<br>';
-														}
-														if($co==5)
-														{
-															echo '</td><td width="75px">';
+													foreach ($bangTin->getHinhAnhs() as $hinhAnh) {	
+														if($hinhAnh->getMain()!=1)	
+														{											
+															$co++;
+															if($co<=10)
+															{
+																echo '&nbsp;&nbsp;';
+																?><a href="<?php echo $this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri();?>" data-gallery>
+																<?php
+																echo '<img src="'.$this->basePath().'/img/'.$yMD.'/'.$hinhAnh->getViTri().'" width="60px" height=80px"/>';
+																?></a><?php
+																echo '<br>';
+															}
+															if($co==5)
+															{
+																echo '</td><td width="75px">';
+															}
 														}														
 													}											
 												?>

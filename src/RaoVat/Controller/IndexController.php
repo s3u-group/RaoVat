@@ -310,11 +310,14 @@
         $query = $queryBuilder->getQuery(); 
         $bT = $query->execute();  // lấy bảng tin
         $idTin=$bT[0];
+
+        // làm theo một cấp nữa là ngày/tháng/năm/idtin
+        $newIdTin=$idTin->getIdTin();
          
         $y=$currentDate->format('Y');
         $m=$currentDate->format('m');
         $d=$currentDate->format('d');
-        $pathYMD="./public/img/".$y.'/'.$m.'/'.$d.'/';
+        $pathYMD="./public/img/".$y.'/'.$m.'/'.$d.'/'.$newIdTin.'/';
 
         if (!file_exists($pathYMD)) {            
             mkdir($pathYMD, 0700, true);
@@ -425,6 +428,9 @@
            {
              $coAnhDaiDien=0;
              $yMD=$bangTin->getNgayTao()->format('Y/m/d');
+             $yMD.='/'.$id;
+
+             //die(var_dump($yMD));
 
              $repository = $entityManager->getRepository('RaoVat\Entity\HinhAnh');
              $queryBuilder = $repository->createQueryBuilder('hA');
@@ -543,10 +549,12 @@
      $query = $queryBuilder->getQuery();
      $hinhAnhs = $query->execute();
 
+     $yMD_Id='';
      if($hinhAnhs)
      {
+       $yMD_Id=$hinhAnhs[0]->getIdTin()->getNgayTao()->format('Y/m/d').'/'.$id;
        foreach ($hinhAnhs as $hinhAnh) {
-         $yMD=$hinhAnh->getIdTin()->getNgayTao()->format('Y/m/d');
+         $yMD=$hinhAnh->getIdTin()->getNgayTao()->format('Y/m/d').'/'.$hinhAnh->getIdTin()->getIdTin();
          // mọi người chỉnh lại đường dẫn tới bức hình lưu trong máy nhé!
          $mask =__ROOT_PATH__.'/public/img/'.$yMD.'/'.$hinhAnh->getViTri();
          array_map( "unlink", glob( $mask ) );
@@ -555,11 +563,17 @@
          $entityManager->flush();  
        }
      }      
-
+     
+     // mọi người chỉnh lại đường dẫn tới bức hình lưu trong máy nhé!
+     $mask =__ROOT_PATH__.'/public/img/'.$yMD_Id;
+     if (!is_dir($mask)) {
+          mkdir($mask);
+     }
+     rmdir($mask);
      $entityManager->remove($bangTin);
      $entityManager->flush();       
 
-     return $this->redirect()->toRoute('rao_vat');
+     return $this->redirect()->toRoute('rao_vat/crud',array('action'=>'index'));
    }
 
    // xóa hình ảnh trong một tin đăng 
@@ -597,7 +611,7 @@
      // KHAI BÁO ROOT_PATH TRONG FILE INDEX.PHP TRONG THƯ MỤC PUBLIC (ZEND/PUCBLIC/INDEX) NHƯ SAU:
      // define('ROOT_PATH', dirname(__DIR__));
 
-     $yMD=$hinhAnh->getIdTin()->getNgayTao()->format('Y/m/d');
+     $yMD=$hinhAnh->getIdTin()->getNgayTao()->format('Y/m/d').'/'.$hinhAnh->getIdTin()->getIdTin();
      $mask =__ROOT_PATH__.'/public/img/'.$yMD.'/'.$hinhAnh->getViTri();
      array_map( "unlink", glob( $mask ) );   
      $entityManager->remove($hinhAnh);
